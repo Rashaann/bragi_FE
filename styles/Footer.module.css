@@ -1,0 +1,29 @@
+.body{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    height: 50vh;
+    width: 100vw;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    color: rgb(218,38,41);
+    font-family: 'Barlow Condensed';
+}
+
+
+.message{
+    color: white;
+    font-size: 10px;
+}
+
+.hiddenName{
+    color: black;
+}

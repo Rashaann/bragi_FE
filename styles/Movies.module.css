@@ -1,0 +1,27 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6rem;
+    min-height: 100vh;
+}
+  
+.container {
+  display: inherit;
+  justify-content: space-around;
+  align-items: inherit;
+  flex-wrap: wrap;
+  width: 90vw;
+}
+
+
+.backgroundImg{
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 50vh;
+  width: 16vw;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
+}
