@@ -4,5 +4,5 @@
 Frontend part of the streaming website Bragi.
 
 ## Technologies used
-- Language(s): Typescript
+- Languages: Javascript + Typescript
 - Frameworks: React, Bootstrap
