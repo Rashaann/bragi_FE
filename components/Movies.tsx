@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import { Inter } from 'next/font/google';
 import Header from './Header';
 
 import styles from '@/styles/Movies.module.css';
@@ -8,7 +7,6 @@ import Footer from './Footer';
 import Router from 'next/router';
 
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Movies() {
 
@@ -24,15 +22,18 @@ export default function Movies() {
 
 
   let articles:any[] = articlesList.map((el: any,i: number) => {
-    return (<div 
-    style={{backgroundColor:'black', height:'60vh', width:'16vw', borderRadius:10, cursor: 'pointer'}}
-    onClick={() => Router.push('/article')}
-    >
-          <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>
-          <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height:'10vh', width:'16vw', color:'rgb(218,38,41)'}}>{el.frenchTitle}</div>
-          {/* ON HOVER -> SHOW TITLE */}
-      </div>)
-    });
+    if(el.mediaType === "movie"){
+      return (<div 
+      className={styles.content}
+      onClick={() => Router.push('/article')}
+      >
+            <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>
+            <div className={styles.title}>{el.frenchTitle}</div>
+            {/* ON HOVER -> SHOW TITLE */}
+        </div>)
+    }
+  });
+
 
   return (
     <>

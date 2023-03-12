@@ -16,18 +16,6 @@
 }
 
 
-
-.content{
-  height: 60vh;
-  width: 16vw;
-  border-radius:10px;
-  cursor: pointer;
-}
-
-.content:hover{
-  box-shadow: 5px -5px 5px rgb(181,37,27);
-}
-
 .backgroundImg{
   background-position: center;
   background-size: cover;
@@ -36,15 +24,4 @@
   width: 16vw;
   border-top-left-radius:10px;
   border-top-right-radius:10px;
-}
-
-.title{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10vh;
-  width: 16vw;
-  color: black;
-  font-family: 'Barlow Condensed';
-  font-size: 17px;
 }

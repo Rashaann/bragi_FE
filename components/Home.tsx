@@ -21,7 +21,13 @@ export default function Home() {
 
       <main className={styles.main}>
         <div className={styles.description}>
-          Home
+          New movies
+        </div>
+        <div className={styles.description}>
+          New series/seasons
+        </div>
+        <div className={styles.description}>
+          Tv channels
         </div>
       </main>
 
