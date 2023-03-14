@@ -6,6 +6,7 @@ import styles from '@/styles/Movies.module.css';
 import Footer from './Footer';
 import Router from 'next/router';
 
+import uid2 from 'uid2';
 
 
 export default function Movies() {
@@ -23,14 +24,20 @@ export default function Movies() {
 
   let articles:any[] = articlesList.map((el: any,i: number) => {
     if(el.mediaType === "movie"){
-      return (<div 
+
+      let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + uid2(7)
+
+      return (<div
+      key={i}
       className={styles.content}
-      onClick={() => Router.push('/article')}
+      onClick={() => Router.push({pathname: '/movie', query: { url: url }})} //"query" -> send url to movie page in order to create a dynamic url
       >
+        <a href={"movie?url="+url}>
             <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>
             <div className={styles.title}>{el.frenchTitle}</div>
             {/* ON HOVER -> SHOW TITLE */}
-        </div>)
+        </a>
+      </div>)
     }
   });
 
