@@ -42,8 +42,48 @@
 
 .stream{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100vw;
-    min-height: 90vh;
+    min-height: 140vh;
+}
+
+
+.icons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 600px;
+    height: 150px;
+    border-top: 1px solid black;
+}
+
+.languageIcon{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+
+.chooseLink{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 900px;
+    height: 550px;
+    background-color: black;
+    color: red;
+    font-family: 'Barlow Condensed';
+    font-size: 30px;
+}
+
+.backStream{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 900px;
+    height: 550px;
+    background-color: black;
 }

@@ -13,32 +13,29 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/pages/_app';
 
 export default function Movie() {
-    const { query } = useRouter();
-    
+    const router = useRouter();
+    const id = router.query.id;
+
+
     const [articlesList, setArticlesList]=useState<any>({});
     const [showIt, setShowIt] = useState<boolean>(false);
+
+    const [link, setLink] = useState<string>('');
     
-    const movies = useSelector((state: RootState) => state.bragi.value.movies);
 
     useEffect(() => {
-        let movieTitle = String(query['movie']).replaceAll('-', ' ').slice(0, Number(String(query['movie']).length)-8);
-
-        const regex = new RegExp(String(String(query['movie']).replaceAll('-', ' ').slice(0, Number(String(query['movie']).length)-8)), 'i');
-        // console.log('movieTitle => ', String(query['movie']).replaceAll('-', ' ').slice(0, Number(String(query['movie']).length)-8))
-
-
-        movies.map((el:{frenchTitle: string}) => {
-            // console.log('regex => ', regex);
-            // console.log('title => ',el.frenchTitle);
-            // console.log('TEST 1 => ', regex.test(el.frenchTitle));
-            if (regex.test(el.frenchTitle.replace(':', ''))){
+        fetch("http://192.168.0.35:3000/movies/all")
+        .then(response => response.json())
+        .then(data => {
+            console.log('test => ', router.query)
+          data.list.map((el:{id:string}) => {
+            if(el.id === router.query.movie){
                 setArticlesList(el);
             }
+          })
         });
-    },[]);
-
-    // console.log('ARTICLESLIST => ',articlesList);
-
+      },[router.query.movie]);
+      console.log(link);
   return (
     <>
         <Head>
@@ -65,8 +62,16 @@ export default function Movie() {
                     </div>
                 </div>
                 <div className={styles.stream}>
-                    <button onClick={() => setShowIt(!showIt)}>Click Me</button>
-                    {showIt && <iframe src={articlesList.link.vf[0]} width={640} height={360} allowFullScreen></iframe>}
+                    <div className={styles.icons}>
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vf[0])} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vostfr[0])} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/english_flag_mlp7wy.png" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vo[0])} />
+                    </div>
+                    {(link==='')||(link===undefined)?
+                    <div className={styles.chooseLink}>Please choose the version to display</div>:
+                    <div className={styles.backStream}>
+                        <iframe src={link} style={{borderWidth: 0}} width={800} height={450} allowFullScreen></iframe>
+                    </div>}
                 </div>
             </div>
         </main>

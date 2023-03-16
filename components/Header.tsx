@@ -4,9 +4,10 @@ import Link from 'next/link';
 import styles from '../styles/Header.module.css';
 
 export default function Header() {
+
   return (
     <div className={styles.body}>
-        <Link href="/"><img src="bragi_red.png" height={60} /></Link>
+        <Link href="/"><img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1678994822/bragi/bragi_red_puuuys.png" height={60} /></Link>
 
         <div className={styles.container}>
             <Link href="/movies" className={styles.link}>Movies</Link>
