@@ -7,16 +7,23 @@ import Footer from './Footer';
 import Router from 'next/router';
 
 import uid2 from 'uid2';
+import { useDispatch } from 'react-redux';
+import { addMoviesToStore } from '@/reducers/bragi';
 
+import Link from 'next/link';
 
 export default function Movies() {
 
   
   const [articlesList, setArticlesList]=useState<any>([]);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     fetch("http://192.168.0.35:3000/movies/all")
     .then(response => response.json())
     .then(data => {
+      dispatch(addMoviesToStore(data.list));
       setArticlesList(data.list);
     });
   },[])
@@ -25,19 +32,21 @@ export default function Movies() {
   let articles:any[] = articlesList.map((el: any,i: number) => {
     if(el.mediaType === "movie"){
 
-      let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + uid2(7)
+      let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id
 
-      return (<div
-      key={i}
+      return (
+      <Link key={i} href={{pathname:`/movies/${url}`, query: el}} as={`/movies/${url}`}>
+        <div
+      
       className={styles.content}
-      onClick={() => Router.push({pathname: '/movie', query: { url: url }})} //"query" -> send url to movie page in order to create a dynamic url
+      //onClick={() => Router.push({pathname: `/movies/${url}`})}//, query: { movie: url }})} //"query" -> send url to movie page in order to create a dynamic url
       >
-        <a href={"movie?url="+url}>
             <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>
             <div className={styles.title}>{el.frenchTitle}</div>
             {/* ON HOVER -> SHOW TITLE */}
-        </a>
-      </div>)
+       
+      </div>
+      </Link>)
     }
   });
 

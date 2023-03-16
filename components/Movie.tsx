@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 import Head from 'next/head';
 
@@ -8,34 +8,41 @@ import Header from './Header';
 import Footer from './Footer';
 
 import styles from '../styles/Movie.module.css';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '@/pages/_app';
 
 export default function Movie() {
     const { query } = useRouter();
-    let movieTitle = String(query['url']).replaceAll('-', ' ').slice(0, Number(String(query['url']).length)-8);
-
-    console.log('movieTitle => ', movieTitle)
-    const regex = new RegExp(String(String(query['url']).replaceAll('-', ' ').slice(0, Number(String(query['url']).length)-8)));
-    const [articlesList, setArticlesList]=useState<any>({});
     
+    const [articlesList, setArticlesList]=useState<any>({});
+    const [showIt, setShowIt] = useState<boolean>(false);
+    
+    const movies = useSelector((state: RootState) => state.bragi.value.movies);
+
     useEffect(() => {
-        fetch("http://192.168.0.35:3000/movies/all")
-        .then(response => response.json())
-        .then(data => {
-            data.list.map((el:{frenchTitle: string}) => {
-                if(regex.test(el.frenchTitle)){
-                    //LOCAL STORAGE REPLACING USEEFFECT FOR AWAIT REMOVAL
-                    setArticlesList(el);
-                }
-            })
-    });
+        let movieTitle = String(query['movie']).replaceAll('-', ' ').slice(0, Number(String(query['movie']).length)-8);
+
+        const regex = new RegExp(String(String(query['movie']).replaceAll('-', ' ').slice(0, Number(String(query['movie']).length)-8)), 'i');
+        // console.log('movieTitle => ', String(query['movie']).replaceAll('-', ' ').slice(0, Number(String(query['movie']).length)-8))
+
+
+        movies.map((el:{frenchTitle: string}) => {
+            // console.log('regex => ', regex);
+            // console.log('title => ',el.frenchTitle);
+            // console.log('TEST 1 => ', regex.test(el.frenchTitle));
+            if (regex.test(el.frenchTitle.replace(':', ''))){
+                setArticlesList(el);
+            }
+        });
     },[]);
 
-    console.log(articlesList.link.vf[0]);
+    // console.log('ARTICLESLIST => ',articlesList);
 
   return (
     <>
         <Head>
-            <title>Bragi | Free streaming website</title>
+            <title>{articlesList.frenchTitle}</title>
             <meta name="description" content="Free streaming website" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/icon.png" />
@@ -58,7 +65,8 @@ export default function Movie() {
                     </div>
                 </div>
                 <div className={styles.stream}>
-                    <iframe src={articlesList.link.vf[0]} width={640} height={360} allowFullScreen></iframe>
+                    <button onClick={() => setShowIt(!showIt)}>Click Me</button>
+                    {showIt && <iframe src={articlesList.link.vf[0]} width={640} height={360} allowFullScreen></iframe>}
                 </div>
             </div>
         </main>
