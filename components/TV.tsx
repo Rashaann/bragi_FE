@@ -6,9 +6,9 @@ import Footer from './Footer';
 
 export default function TV() {
 
-  const logos = ["2m-logo.png", "almaghribia.png", "alaoula.jpg", "2m-logo.png", "almaghribia.png", "alaoula.jpg"];
-  const channelName = ["Maroc 2M", "Al Maghribia", "Al Aoula", "MBC", "MBC 4", "National Geographic Abu Dhabi"];
-  const sources = [
+  const logos:string[] = ["2m-logo.png", "almaghribia.png", "alaoula.jpg", "mbc_logo.png", "mbc4.png", "natgeo_ad.jpg"];
+  const channelName:string[] = ["Maroc 2M", "Al Maghribia", "Al Aoula", "MBC", "MBC 4", "National Geographic Abu Dhabi"];
+  const sources:string[] = [
     "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fcdnamd-hls-globecast.akamaized.net%2Flive%2Framdisk%2F2m_monde%2Fhls_video_ts_tuhawxpiemz257adfc%2F2m_monde.m3u8&duration=734.097415",
     "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fcdnamd-hls-globecast.akamaized.net%2Flive%2Framdisk%2Fal_maghribia_snrt%2Fhls_snrt%2Findex.m3u8&duration=734.097415",
     "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fcdnamd-hls-globecast.akamaized.net%2Flive%2Framdisk%2Fal_aoula_inter%2Fhls_snrt%2Findex.m3u8&duration=734.097415",
@@ -18,8 +18,9 @@ export default function TV() {
   ];
 
 
-  const spanishName = ["Filmstream", "Rakuten Comedy Movies", "Rakuten Action Movies", "Rakuten Spotlight"];
-  const spanishSources = [
+  const logosSpain:string[] = ["filmstream.png", "rak_comedy_tv.jpg", "rak_action_tv.jpg", "rak_spotlight.jpg"];
+  const spanishName:string[] = ["Filmstream", "Rakuten Comedy Movies", "Rakuten Action Movies", "Rakuten Spotlight"];
+  const spanishSources:string[] = [
     "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fspi-filmstream-1-nl.samsung.wurl.tv%2Fplaylist.m3u8&duration=734.097415",
     "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Frakuten-comedymovies-2-es.samsung.wurl.tv%2Fplaylist.m3u8&duration=734.097415",
     "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Frakuten-actionmovies-2-es.samsung.wurl.tv%2Fplaylist.m3u8&duration=734.097415",
@@ -41,6 +42,22 @@ export default function TV() {
     <p>{channelName[i]}</p>
   </div>)
   })
+
+
+  const [tvSpain, setTvSpain] = useState<any>(<iframe src="https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fspi-filmstream-1-nl.samsung.wurl.tv%2Fplaylist.m3u8&duration=734.097415" style={{width: '80vw', height: '80vh'}} allow="autoplay; encrypted-media" allowFullScreen></iframe>);
+
+
+  const displayTvSpain = (source:string) => {
+    setTvSpain(
+      <iframe src={source} style={{width: '80vw', height: '80vh'}} allow="autoplay; encrypted-media" allowFullScreen></iframe>)
+  }
+
+  const displayLogoSpain = logosSpain.map((el, i) => {
+    return (<div style={{ cursor: 'pointer' }} onClick={() => displayTvSpain(spanishSources[i])}>
+    <img src={el} width={100} height={100} />
+    <p>{spanishName[i]}</p>
+  </div>)
+  })
   
   return (
     <>
@@ -57,11 +74,21 @@ export default function TV() {
       
       <main className={styles.main}>
         <div className={styles.description}>
+          <p>Arabic channels</p>
           <div style={{display: 'flex', justifyContent:'space-around', alignItems:'center', overflowX: 'scroll', width:'80vw'}}>
             {displayLogo}
           </div>
           <div>
             {tv}
+          </div>
+        </div>
+        <div className={styles.description}>
+          <p>Spanish channels</p>
+          <div style={{display: 'flex', justifyContent:'space-around', alignItems:'center', overflowX: 'scroll', width:'80vw'}}>
+            {displayLogoSpain}
+          </div>
+          <div>
+            {tvSpain}
           </div>
         </div>
       </main>
