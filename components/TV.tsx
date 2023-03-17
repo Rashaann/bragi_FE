@@ -38,8 +38,8 @@ export default function TV() {
 
   const displayLogo = logos.map((el, i) => {
     return (<div style={{ cursor: 'pointer' }} onClick={() => displayTv(sources[i])}>
-    <img src={el} width={100} height={100} />
-    <p>{channelName[i]}</p>
+        <img src={el} width={100} height={100} />
+        <p>{channelName[i]}</p>
   </div>)
   })
 
