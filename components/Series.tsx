@@ -10,7 +10,7 @@ import Router from 'next/router';
 export default function Series() {
   const [articlesList, setArticlesList]=useState<any>([]);
   useEffect(() => {
-    fetch("http://192.168.0.35:3000/movies/all")
+    fetch("https://bragi-be.vercel.app/movies/all")
     .then(response => response.json())
     .then(data => {
       setArticlesList(data.list);

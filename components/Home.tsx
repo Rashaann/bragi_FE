@@ -17,7 +17,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("http://192.168.0.35:3000/movies/all")
+    fetch("https://bragi-be.vercel.app/movies/all")
     .then(response => response.json())
     .then(data => {
       dispatch(addMoviesToStore(data.list));
