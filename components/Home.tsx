@@ -34,8 +34,10 @@ export default function Home() {
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
-        <div className={styles.content}>
-            <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
+        <div className={styles.container}>
+          <div className={styles.content}>
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
+          </div>
         </div>
       </Link>)
     }
@@ -70,7 +72,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.description}>
           <h1>New movies</h1>
-          <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', overflowX: 'scroll', height: '65vh',}}>{articles}</div>
+          <div style={{display: 'flex', overflowX: 'scroll', height: '65vh',}}>{articles}</div>
         </div>
         <div className={styles.description}>
           <h1>New series/seasons</h1>

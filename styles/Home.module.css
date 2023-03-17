@@ -16,6 +16,14 @@
   font-family: 'Barlow Condensed';
 }
 
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65vh;
+  width: 20vw;
+}
+
 .content{
   height: 60vh;
   width: 16vw;

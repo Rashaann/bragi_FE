@@ -6,6 +6,14 @@ import Footer from './Footer';
 
 export default function TV() {
 
+
+  
+
+
+
+
+
+
   const logos:string[] = ["2m-logo.png", "almaghribia.png", "alaoula.jpg", "mbc_logo.png", "mbc4.png", "natgeo_ad.jpg"];
   const channelName:string[] = ["Maroc 2M", "Al Maghribia", "Al Aoula", "MBC", "MBC 4", "National Geographic Abu Dhabi"];
   const sources:string[] = [

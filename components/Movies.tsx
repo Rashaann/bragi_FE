@@ -37,8 +37,10 @@ export default function Movies() {
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
-        <div className={styles.content}>
-            <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
+        <div className={styles.container}>
+          <div className={styles.content}>
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
+          </div>
         </div>
       </Link>)
     }
@@ -57,7 +59,7 @@ export default function Movies() {
       <Header />
       
       <main className={styles.main}>
-        <div className={styles.container}>
+        <div className={styles.body}>
           {articles}
         </div>
       </main>
