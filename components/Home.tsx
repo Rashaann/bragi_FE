@@ -6,12 +6,13 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addMoviesToStore } from '@/reducers/bragi';
+import { addMoviesToStore, addSeriesToStore } from '@/reducers/bragi';
 
 
 
 export default function Home() {
   const [articlesList, setArticlesList]=useState<any>([]);
+  const [seriesList, setSeriesList] = useState<object[]>([]);
   const [showTitle, setShowTitle] = useState<boolean>(false);
 
   const dispatch = useDispatch();
@@ -24,6 +25,14 @@ export default function Home() {
       setArticlesList(data.list);
       console.log(articlesList);
     });
+
+    fetch("https://bragi-be.vercel.app/series/all")
+    .then(response => response.json())
+    .then(data => {
+      dispatch(addSeriesToStore(data.list));
+      setSeriesList(data.list);
+      console.log('seriesList => ',seriesList);
+    });
   },[])
 
 
@@ -34,6 +43,23 @@ export default function Home() {
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
+        <div className={styles.container}>
+          <div className={styles.content}>
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
+          </div>
+        </div>
+      </Link>)
+    }
+  });
+
+
+  let series:any[] = seriesList.map((el: any,i: number) => {
+    let title = '';
+    if(el.mediaType === "serie"){
+
+      let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
+      return (
+      <Link key={i} href={{pathname:`/series/[serie]`, query: {id: el.id}}} as={`/series/${el.id}`} passHref>
         <div className={styles.container}>
           <div className={styles.content}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
@@ -76,6 +102,7 @@ export default function Home() {
         </div>
         <div className={styles.seriesContainer}>
           <h1>New series/seasons</h1>
+          <div style={{display: 'flex', overflowX: 'scroll', height: '500px',}}>{series}</div>
         </div>
         <div className={styles.description}>
           <h1>Tv channels</h1>
