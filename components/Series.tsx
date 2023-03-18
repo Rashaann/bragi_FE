@@ -2,32 +2,47 @@ import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Header from './Header';
 
-import styles from '@/styles/Series.module.css';
+import styles from '@/styles/Movies.module.css';
 import Footer from './Footer';
 import Router from 'next/router';
 
+import uid2 from 'uid2';
+import { useDispatch } from 'react-redux';
+import { addSeriesToStore } from '@/reducers/bragi';
+
+import Link from 'next/link';
 
 export default function Series() {
+
+  
   const [articlesList, setArticlesList]=useState<any>([]);
+  const [showTitle, setShowTitle] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    fetch("https://bragi-be.vercel.app/movies/all")
+    fetch("https://bragi-be.vercel.app/series/all")
     .then(response => response.json())
     .then(data => {
+      dispatch(addSeriesToStore(data.list));
       setArticlesList(data.list);
     });
   },[])
 
 
   let articles:any[] = articlesList.map((el: any,i: number) => {
+    let title = '';
     if(el.mediaType === "serie"){
-      return (<div 
-      style={{backgroundColor:'black', height:'60vh', width:'16vw', borderRadius:10, cursor: 'pointer'}}
-      onClick={() => Router.push('/article')}
-      >
-            <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>
-            <div style={{display: 'flex', justifyContent:'center', alignItems:'center', height:'10vh', width:'16vw', color:'rgb(218,38,41)'}}>{el.frenchTitle}</div>
-            {/* ON HOVER -> SHOW TITLE */}
-        </div>)
+
+      let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
+      return (
+      <Link key={i} href={{pathname:`/series/[serie]`, query: {id: el.id}}} as={`/series/${el.id}`} passHref>
+        <div className={styles.container}>
+          <div className={styles.content}>
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
+          </div>
+        </div>
+      </Link>)
     }
   });
 
@@ -44,7 +59,7 @@ export default function Series() {
       <Header />
       
       <main className={styles.main}>
-        <div className={styles.container}>
+        <div className={styles.body}>
           {articles}
         </div>
       </main>
