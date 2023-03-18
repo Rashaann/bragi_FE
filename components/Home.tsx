@@ -70,11 +70,11 @@ export default function Home() {
         <Header />
 
       <main className={styles.main}>
-        <div className={styles.description}>
+        <div className={styles.movieContainer}>
           <h1>New movies</h1>
-          <div style={{display: 'flex', overflowX: 'scroll', height: '65vh',}}>{articles}</div>
+          <div style={{display: 'flex', overflowX: 'scroll', height: '500px',}}>{articles}</div>
         </div>
-        <div className={styles.description}>
+        <div className={styles.seriesContainer}>
           <h1>New series/seasons</h1>
         </div>
         <div className={styles.description}>

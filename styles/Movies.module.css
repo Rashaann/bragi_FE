@@ -18,13 +18,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 65vh;
-  width: 20vw;
+  height: 460px;
+  width: 250px;
 }
 
 .content{
-  height: 60vh;
-  width: 16vw;
+  height: 430px;
+  width:  200px;
   border-radius:10px;
   cursor: pointer;
 }
@@ -40,8 +40,8 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 60vh;
-  width: 16vw;
+  height: 430px;
+  width: 200px;
   border-radius:10px;
 }
 
