@@ -34,7 +34,7 @@ export default function Episode() {
         .then(response => response.json())
         .then(data => {
             //console.log('test => ', router.query)
-          data.list.map((el:{id:string}) => {
+          data.list.map((el:{id:string, links:object, frenchTitle:string}) => {
             if(el.id === router.query.id){
                 setArticlesList(el);
                 setSerie(el.links);
