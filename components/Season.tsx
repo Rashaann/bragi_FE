@@ -44,7 +44,7 @@ export default function Season() {
                     let episode = 'episode ' + String(Number(j) + 1);
                     let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
                     return (<Link key={j} href={{pathname:'/[series]/[seasons]/[episode]', query: {id: el.id, url: url, season: router.query.season, episode: String(Number(j)+1), episodeUrl: j}}} as={`/${url}/season-${router.query.season}/episode-${String(Number(j)+1)}`} >
-                        <div>
+                        <div className={styles.episodeContainer}>
                             {episode}
                         </div>
                     </Link>)
@@ -84,7 +84,7 @@ export default function Season() {
                         <p>Released on: {articlesList.releaseDate}</p>
                     </div>
                 </div>
-                <div className={styles.stream}>
+                <div className={styles.displayEpisodes}>
                     {/* <div className={styles.icons}>
                         <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vf[0])} />
                         <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vostfr[0])} />

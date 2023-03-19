@@ -69,7 +69,7 @@ export default function Serie() {
                     console.log(String(Number(i)+1));
                     if(e !== "__v"){
                         return (<Link key={i} href={{pathname:'/[series]/[seasons]/season', query: {id: el.id, url: url, season: String(Number(i)+1), seasonUrl: `season-${String(Number(i)+1)}`}}} as={`/${url}/season-${String(Number(i)+1)}/season`}>
-                            <div>
+                            <div className={styles.seasonContainer}>
                                 {season}
                             </div>
                         </Link>)
@@ -126,7 +126,7 @@ export default function Serie() {
                         <p>Released on: {articlesList.releaseDate}</p>
                     </div>
                 </div>
-                <div className={styles.stream}>
+                <div className={styles.displaySeasons}>
                     {/* <div className={styles.icons}>
                         <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vf[0])} />
                         <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vostfr[0])} />

@@ -144,7 +144,7 @@ export default function Episode() {
                     {(link==='')||(link===undefined)?
                     <div className={styles.chooseLink}>Please choose the version to display</div>:
                     <div className={styles.backStream}>
-                        <iframe src={link} style={{borderWidth: 0}} width={800} height={450} allowFullScreen></iframe>
+                        <iframe src={link} style={{borderWidth: 0, width: '60vw', height: '80vh'}} allowFullScreen></iframe>
                     </div>}
                 </div>
             </div>:

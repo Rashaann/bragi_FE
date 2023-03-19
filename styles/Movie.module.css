@@ -70,8 +70,8 @@
 }
 
 .languageIcon{
-    width: 100px;
-    height: 100px;
+    width: 8vw;
+    height: 16vh;
     border-radius: 50px;
     cursor: pointer;
 }
@@ -81,8 +81,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 900px;
-    height: 550px;
+    width: 70vw;
+    height: 80vh;
     background-color: black;
     color: red;
     font-family: 'Barlow Condensed';
@@ -96,4 +96,60 @@
     width: 900px;
     height: 550px;
     background-color: black;
+}
+
+
+.displaySeasons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60vw;
+    height: 60vh;
+}
+
+.seasonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 200px;
+    color: white;
+    background-color: black;
+    font-size: 25px;
+    font-family: 'Barlow Condensed';
+    border-radius: 10px;
+}
+
+.seasonContainer:hover{
+    box-shadow: 5px -5px 5px rgb(181,37,27);
+}
+
+
+
+
+
+.displayEpisodes{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 60vw;
+    height: 60vh;
+}
+
+.episodeContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 80px;
+    color: white;
+    background-color: black;
+    font-size: 22px;
+    font-family: 'Barlow Condensed';
+    border-radius: 10px;
+}
+
+.episodeContainer:hover{
+    box-shadow: 5px -5px 5px rgb(181,37,27);
 }
