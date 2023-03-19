@@ -7,12 +7,6 @@ import Footer from './Footer';
 export default function TV() {
 
 
-  
-
-
-
-
-
 
   const logos:string[] = ["2m-logo.png", "almaghribia.png", "alaoula.jpg", "mbc_logo.png", "mbc4.png", "natgeo_ad.jpg"];
   const channelName:string[] = ["Maroc 2M", "Al Maghribia", "Al Aoula", "MBC", "MBC 4", "National Geographic Abu Dhabi"];
@@ -57,7 +51,7 @@ export default function TV() {
 
   const displayTvSpain = (source:string) => {
     setTvSpain(
-      <iframe src={source} style={{width: '80vw', height: '80vh'}} allow="autoplay; encrypted-media" allowFullScreen></iframe>)
+      <iframe src={source} style={{width: '80vw', height: '80vh'}} allow="encrypted-media" allowFullScreen></iframe>)
   }
 
   const displayLogoSpain = logosSpain.map((el, i) => {
