@@ -36,7 +36,7 @@ export default function Series() {
 
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
-      <Link key={i} href={{pathname:`/series/[serie]`, query: {id: el.id}}} as={`/series/${el.id}`} passHref>
+      <Link key={i} href={{pathname:`/[series]/serie`, query: {id: el.id, url: url}}} as={`/${url}/serie`} passHref>
         <div className={styles.container}>
           <div className={styles.content}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       

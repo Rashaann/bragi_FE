@@ -9,10 +9,20 @@
   
 .container {
   display: inherit;
-  justify-content: space-around;
-  align-items: inherit;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   width: 100vw;
+}
+
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-family: 'Barlow Condensed';
+    width: 90vw;
+    height: 90vh;
 }
 
 .infos{
