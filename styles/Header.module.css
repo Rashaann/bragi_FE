@@ -30,3 +30,11 @@
     border-width: 0px;
     padding-left: 10px;
 }
+
+.smInput{
+    height: 5vh;
+    width: 35vw;
+    border-radius: 20px;
+    border-width: 0px;
+    padding-left: 10px;
+}

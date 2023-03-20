@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMoviesToStore, addSeriesToStore } from '@/reducers/bragi';
 
+import Container from '@mui/material/Container';
+
 
 
 export default function Home() {
@@ -110,7 +112,7 @@ export default function Home() {
       </Head>
 
         <Header />
-      <main className={styles.main}>
+      <Container>
         <div className={styles.movieContainer}>
           <h1>New movies</h1>
           <div style={{display: 'flex', overflowX: 'scroll', height: '500px',}}>{articles}</div>
@@ -123,7 +125,7 @@ export default function Home() {
           <h1>Tv channels</h1>
           <div style={{display:'flex', overflowX: 'scroll'}}>{displayLogo}</div>
         </div>
-      </main>
+      </Container>
 
       <Footer />
     </>
