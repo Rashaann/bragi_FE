@@ -3,13 +3,23 @@
     justify-content: space-between;
     align-items: center;
     background-color: black;
-    height: 50vh;
+    min-height: 50vh;
     width: 100vw;
     padding-left: 10px;
     padding-right: 10px;
 }
 
 .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    color: rgb(218,38,41);
+    font-family: 'Barlow Condensed';
+}
+
+.smContainer{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -26,6 +36,14 @@
     width: 80vw;
 }
 
+.smContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 45vh;
+    width: 95vw;
+}
+
 .subContent{
     display: flex;
     flex-direction: column;
@@ -34,9 +52,11 @@
 
 .signature{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     width: 100vw;
+    min-height: 15vh;
 }
 
 .message{

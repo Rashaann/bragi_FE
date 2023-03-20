@@ -4,18 +4,12 @@ import Link from 'next/link';
 import styles from '../styles/Header.module.css';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
 
 
 import MenuIcon from '@mui/icons-material/Menu';
@@ -46,30 +40,31 @@ export default function Header() {
             <Link href="/tv" style={{textDecoration:'none'}}>TV</Link>
             <input className={styles.input} />
         </div>:
-        <div className={styles.container}>
+        <div className={styles.smContainer}>
           <Tooltip title="Menu">
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-            <MenuIcon sx={{ width: 32, height: 32, color: 'red' }} />
-          </IconButton>
-        </Tooltip>
+            <IconButton
+              onClick={handleClick}
+              size="small"
+              sx={{ ml: 2 }}
+              aria-controls={open ? 'account-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+            >
+              <MenuIcon sx={{ width: 32, height: 32, color: 'red', '&:hover': '5px -5px 5px rgb(181,37,27)' }} />
+            </IconButton>
+          </Tooltip>
+
           <Menu
             anchorEl={anchorEl}
             id="account-menu"
             open={open}
             onClose={handleClose}
-            onClick={handleClose}
+            // onClick={handleClose}
             PaperProps={{
               elevation: 0,
               sx: {
                 overflow: 'visible',
-                filter: 'drop-shadow(0px 2px 8px rgba(1,1,1,1))',
+                filter: 'drop-shadow(2px 2px 2px rgba(1,1,1,1))',
                 mt: 1.5,
                 '& .MuiAvatar-root': {
                   width: 32,

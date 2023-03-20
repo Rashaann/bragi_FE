@@ -67,7 +67,7 @@ export default function TV() {
         <title>Bragi | Free streaming website</title>
         <meta name="description" content="Free streaming website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/icon.png" />
+        <link rel="icon" href="https://res.cloudinary.com/dldeqai4u/image/upload/v1679305932/bragi/icon_izqe4d.png" />
         <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
         <script src="https://vjs.zencdn.net/8.0.4/video.min.js" defer></script>
       </Head>
