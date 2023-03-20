@@ -35,7 +35,7 @@ export default function Episode() {
         .then(data => {
             //console.log('test => ', router.query)
           data.list.map((el:{id:string, links:object, frenchTitle:string}) => {
-            if(el.id === router.query.id){
+            if(el.id === router.query.series){
                 setArticlesList(el);
                 setSerie(el.links);
                 setIsLoaded(true);
@@ -64,7 +64,7 @@ export default function Episode() {
                 //     // });
                 // }
 
-                setEpisodes(router.query.episodeUrl);
+                setEpisodes(router.query.episodes);
                 // setSeasons(Object.keys(el.links).map((e, i) => {
                 //     let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
                 //     let season = 'season ' + String(Number(i)+1);
@@ -77,14 +77,14 @@ export default function Episode() {
                 //         //</Link>)
                 //     }
                 // })
-                setSeasons(`S${router.query.season}`);
+                setSeasons(`S${router.query.seasons}`);
 
                 console.log('zidndznkdz => ', articlesList)
             }
           });
 
         });
-      },[router.query.id]);
+      },[router.query.series]);
     
 
 
@@ -106,9 +106,9 @@ export default function Episode() {
     // console.log('dzbdbzjdzjdzjbd => ', router.query)
     // console.log('xrctvgbhgcf => ', articlesList.links[`S${router.query.season}`]);
     // console.log('savghbsaubjsa => ', router.query.episodeUrl);
-    // console.log('fzudzbjdzjbd => ', articlesList.links[seasons][Number(episodes)]);
-    // console.log('season => ', seasons);
-    // console.log('episode => ', episodes);
+    //console.log('fzudzbjdzjbd => ', articlesList.links[seasons]);
+    // console.log('season => ', seasons);[Number(episodes)]
+    //console.log('episode => ', episodes);
   return (
     <>
         <Head>

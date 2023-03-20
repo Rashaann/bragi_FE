@@ -21,7 +21,9 @@ export default function Home() {
     fetch("https://bragi-be.vercel.app/movies/all")
     .then(response => response.json())
     .then(data => {
-      dispatch(addMoviesToStore(data.list));
+      dispatch(addMoviesToStore(data.list.sort((a,b) => {
+        return new Date(a.date)<new Date(b.date);
+      })));
       setArticlesList(data.list);
       console.log(articlesList);
     });
@@ -34,12 +36,13 @@ export default function Home() {
       console.log('seriesList => ',seriesList);
     });
   },[])
+  
+  
 
-
-  let articles:any[] = articlesList.map((el: any,i: number) => {
+  let articles:any[] = articlesList.map((el: any, i: number) => {
     let title = '';
-    if(el.mediaType === "movie"){
-
+    if(el.mediaType === "movie" && i<=8){
+      
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
@@ -49,23 +52,36 @@ export default function Home() {
           </div>
         </div>
       </Link>)
+    } else if(i === articlesList.length-1){
+      return (<div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: 460, width: 250}}>
+        <Link href={{pathname:`/movies`}}>
+          <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 200, height: 70, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more movies</button>
+        </Link>
+      </div>)
     }
   });
 
 
   let series:any[] = seriesList.map((el: any,i: number) => {
     let title = '';
-    if(el.mediaType === "serie"){
+    if(el.mediaType === "serie" && i<=8){
 
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
-      <Link key={i} href={{pathname:`/[series]/serie`, query: {id: el.id, url: url}}} as={`/${url}/serie`} passHref>
+      <Link key={i} href={{pathname:`/[series]/serie`, query: {id: el.id, url: url}}} as={`/${el.id}/serie`} passHref>
         <div className={styles.container}>
           <div className={styles.content}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
           </div>
         </div>
       </Link>)
+    } else if(i === seriesList.length-1){
+      console.log('youhou')
+      return (<div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: 460, width: 250}}>
+        <Link href={{pathname:`/series`}}>
+          <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 200, height: 70, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more series</button>
+        </Link>
+      </div>)
     }
   });
 
@@ -94,7 +110,6 @@ export default function Home() {
       </Head>
 
         <Header />
-
       <main className={styles.main}>
         <div className={styles.movieContainer}>
           <h1>New movies</h1>

@@ -33,17 +33,17 @@ export default function Season() {
         .then(data => {
           console.log('test => ', router.query)
           data.list.map((el:{id:string, links:any, frenchTitle:string}) => {
-            if(el.id === router.query.id){
+            if(el.id === router.query.series){
                 setArticlesList(el);
                 setSerie(el.links);
                 setIsLoaded(true);
                 //console.log('bjncrd => ', el.links['S1'])
 
-                setEpisodes(Object.keys(el.links[`S${String(router.query.season)}`]).map((e, j) => {
+                setEpisodes(Object.keys(el.links[`S${String(router.query.seasons)}`]).map((e, j) => {
                     //console.log('episode => ', String(Number(j) + 1))
                     let episode = 'episode ' + String(Number(j) + 1);
                     let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
-                    return (<Link key={j} href={{pathname:'/[series]/[seasons]/[episode]', query: {id: el.id, url: url, season: router.query.season, episode: String(Number(j)+1), episodeUrl: j}}} as={`/${url}/season-${router.query.season}/episode-${String(Number(j)+1)}`} >
+                    return (<Link key={j} href={{pathname:'/[series]/[seasons]/[episodes]/episode', query: {id: el.id, url: url, season: router.query.season, episode: String(Number(j)+1), episodeUrl: j}}} as={`/${el.id}/${router.query.seasons}/${String(Number(j)+1)}/episode`} >
                         <div className={styles.episodeContainer}>
                             {episode}
                         </div>
@@ -53,7 +53,7 @@ export default function Season() {
           });
 
         });
-      },[router.query.id]);
+      },[router.query.series]);
     
 
     

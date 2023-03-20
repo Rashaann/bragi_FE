@@ -34,7 +34,7 @@ export default function Serie() {
         .then(data => {
             console.log('test => ', router.query);
           data.list.map((el:{id:string, links:any, frenchTitle:string}) => {
-            if(el.id === router.query.id){
+            if(el.id === router.query.series){
                 setArticlesList(el);
                 setSerie(el.links);
                 setIsLoaded(true);
@@ -68,7 +68,7 @@ export default function Serie() {
                     let season = 'season ' + String(Number(i)+1);
                     console.log(String(Number(i)+1));
                     if(e !== "__v"){
-                        return (<Link key={i} href={{pathname:'/[series]/[seasons]/season', query: {id: el.id, url: url, season: String(Number(i)+1), seasonUrl: `season-${String(Number(i)+1)}`}}} as={`/${url}/season-${String(Number(i)+1)}/season`}>
+                        return (<Link key={i} href={{pathname:'/[series]/[seasons]/season', query: {id: el.id, url: url, season: String(Number(i)+1), seasonUrl: `season${String(Number(i)+1)}`}}} as={`/${el.id}/${String(Number(i)+1)}/season`}>
                             <div className={styles.seasonContainer}>
                                 {season}
                             </div>
@@ -79,7 +79,7 @@ export default function Serie() {
           });
 
         });
-      },[router.query.id]);
+      },[router.query.series]);
     
 
 
