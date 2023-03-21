@@ -39,7 +39,7 @@ export default function TV() {
   }
 
   const displayLogo = logos.map((el, i) => {
-    return (<div style={{ cursor: 'pointer' }} onClick={() => displayTv(sources[i])}>
+    return (<div style={{display: 'flex', flexDirection:'column', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', width: 350, height: 250 }} onClick={() => displayTv(sources[i])}>
         <img src={el} width={100} height={100} />
         <p>{channelName[i]}</p>
   </div>)
@@ -55,7 +55,7 @@ export default function TV() {
   }
 
   const displayLogoSpain = logosSpain.map((el, i) => {
-    return (<div style={{ cursor: 'pointer' }} onClick={() => displayTvSpain(spanishSources[i])}>
+    return (<div style={{ cursor: 'pointer', width: 150, height: 150 }} onClick={() => displayTvSpain(spanishSources[i])}>
     <img src={el} width={100} height={100} />
     <p>{spanishName[i]}</p>
   </div>)
@@ -76,8 +76,8 @@ export default function TV() {
       
       <main className={styles.main}>
         <div className={styles.description}>
-          <p>Arabic channels</p>
-          <div style={{display: 'flex', justifyContent:'space-around', alignItems:'center', overflowX: 'scroll', width:'80vw'}}>
+          <h1>Arabic channels</h1>
+          <div style={{display: 'flex', overflowX: 'scroll', width: '80vw', height: 250}}>
             {displayLogo}
           </div>
           <div>
@@ -85,8 +85,8 @@ export default function TV() {
           </div>
         </div>
         <div className={styles.description}>
-          <p>Spanish channels</p>
-          <div style={{display: 'flex', justifyContent:'space-around', alignItems:'center', overflowX: 'scroll', width:'80vw'}}>
+          <h1>Spanish channels</h1>
+          <div style={{display: 'flex', overflowX: 'scroll', width: '80vw', height: 200}}>
             {displayLogoSpain}
           </div>
           <div>

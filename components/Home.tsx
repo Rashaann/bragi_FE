@@ -8,14 +8,15 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMoviesToStore, addSeriesToStore } from '@/reducers/bragi';
 
-import Container from '@mui/material/Container';
-
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 export default function Home() {
   const [articlesList, setArticlesList]=useState<any>([]);
   const [seriesList, setSeriesList] = useState<object[]>([]);
   const [showTitle, setShowTitle] = useState<boolean>(false);
+
+  const matches = useMediaQuery('(min-width:904px)');
 
   const dispatch = useDispatch();
 
@@ -48,18 +49,32 @@ export default function Home() {
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
+        {matches?
         <div className={styles.container}>
           <div className={styles.content}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
           </div>
-        </div>
+        </div>:
+        <div className={styles.smContainer}>
+          <div className={styles.smContent}>
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.smBackgroundImg}></div>       
+          </div>
+        </div>}
       </Link>)
     } else if(i === articlesList.length-1){
-      return (<div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: 460, width: 250}}>
-        <Link href={{pathname:`/movies`}}>
-          <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 200, height: 70, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more movies</button>
-        </Link>
-      </div>)
+      if(matches){
+        return (<div className={styles.btnContent}>
+          <Link href={{pathname:`/movies`}}>
+            <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 200, height: 70, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more movies</button>
+          </Link>
+        </div>)
+      } else {
+        return (<div className={styles.smBtnContent}>
+          <Link href={{pathname:`/movies`}}>
+            <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 180, height: 60, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more movies</button>
+          </Link>
+        </div>)
+      }
     }
   });
 
@@ -71,11 +86,17 @@ export default function Home() {
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/[series]/serie`, query: {id: el.id, url: url}}} as={`/${el.id}/serie`} passHref>
+        {matches?
         <div className={styles.container}>
           <div className={styles.content}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
           </div>
-        </div>
+        </div>:
+        <div className={styles.smContainer}>
+          <div className={styles.smContent}>
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.smBackgroundImg}></div>       
+          </div>
+        </div>}
       </Link>)
     } else if(i === seriesList.length-1){
       console.log('youhou')
@@ -108,11 +129,11 @@ export default function Home() {
         <title>Bragi | Free streaming website</title>
         <meta name="description" content="Free streaming website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="https://res.cloudinary.com/dldeqai4u/image/upload/v1679305932/bragi/icon_izqe4d.png" />
+        <link rel="icon" href="/icon.png" />
       </Head>
 
         <Header />
-      <Container>
+      <main className={styles.main}>
         <div className={styles.movieContainer}>
           <h1>New movies</h1>
           <div style={{display: 'flex', overflowX: 'scroll', height: '500px',}}>{articles}</div>
@@ -125,7 +146,7 @@ export default function Home() {
           <h1>Tv channels</h1>
           <div style={{display:'flex', overflowX: 'scroll'}}>{displayLogo}</div>
         </div>
-      </Container>
+      </main>
 
       <Footer />
     </>

@@ -5,6 +5,8 @@
     align-items: center;
     padding: 6rem;
     min-height: 100vh;
+    font-family: 'Barlow Condensed';
+    font-size: 30px;
 }
   
 .container {
@@ -141,6 +143,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 140px;
+    height: 140px;
+}
+
+.episodeContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 120px;
     height: 80px;
     color: white;
@@ -151,5 +161,193 @@
 }
 
 .episodeContainer:hover{
+    box-shadow: 5px -5px 5px rgb(181,37,27);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+.smContainer {
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100vw;
+}
+
+.smLoading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-family: 'Barlow Condensed';
+    width: 90vw;
+    height: 90vh;
+}
+
+.smInfos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 50vh;
+}
+
+
+.smLeftPart{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 80vh;
+    width: 100vw;
+    font-family: 'Barlow Condensed';
+}
+
+.smTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh; 
+    width: 90vw;
+}
+
+.smRightPart{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100vw;
+    height: 60vh;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: 'Barlow Condensed';
+    font-size: 20px;
+}
+
+
+.smStream{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+}
+
+
+.smIcons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90vw;
+    height: 20vh;
+    border-top: 1px solid black;
+}
+
+.smLanguageIcon{
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+
+.smChooseLink{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    height: 60vh;
+    background-color: black;
+    color: red;
+    font-family: 'Barlow Condensed';
+    font-size: 30px;
+}
+
+.smBackStream{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    height: 60vh;
+    background-color: black;
+}
+
+
+
+
+
+
+.smDisplaySeasons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 60vh;
+}
+
+.smSeasonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 200px;
+    color: white;
+    background-color: black;
+    font-size: 25px;
+    font-family: 'Barlow Condensed';
+    border-radius: 10px;
+}
+
+.smSeasonContainer:hover{
+    box-shadow: 5px -5px 5px rgb(181,37,27);
+}
+
+
+
+
+
+.smDisplayEpisodes{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    min-height: 60vh;
+}
+
+.smEpisodeContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 140px;
+}
+
+.smEpisodeContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 80px;
+    color: white;
+    background-color: black;
+    font-size: 22px;
+    font-family: 'Barlow Condensed';
+    border-radius: 10px;
+}
+
+.smEpisodeContent:hover{
     box-shadow: 5px -5px 5px rgb(181,37,27);
 }

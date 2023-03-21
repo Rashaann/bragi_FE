@@ -12,9 +12,14 @@ import { addMoviesToStore } from '@/reducers/bragi';
 
 import Link from 'next/link';
 
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+
 export default function Categories() {
   const router = useRouter();
   
+  const matches = useMediaQuery('(min-width:904px)');
+
   const [articlesList, setArticlesList]=useState<any>([]);
   const [showTitle, setShowTitle] = useState<boolean>(false);
 
@@ -36,11 +41,17 @@ export default function Categories() {
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
+        {matches?
         <div className={styles.container}>
           <div className={styles.content}>
-              <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>       
           </div>
-        </div>
+        </div>:
+        <div className={styles.smContainer}>
+          <div className={styles.smContent}>
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.smBackgroundImg}></div>       
+          </div>
+        </div>}
       </Link>)
     }
   });

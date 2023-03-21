@@ -13,10 +13,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/pages/_app';
 import Link from 'next/link';
 
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 export default function Episode() {
     const router = useRouter();
     const id = router.query.id;
 
+    const matches = useMediaQuery('(min-width:904px)');
 
     const [articlesList, setArticlesList]=useState<any>({});
     const [showIt, setShowIt] = useState<boolean>(false);
@@ -41,68 +44,17 @@ export default function Episode() {
                 setIsLoaded(true);
                 //console.log('bjncrd => ', el.links['S1'])
 
-                // setEpisodes(Object.keys(el.links[`S${String(1)}`]).map((e, j) => {
-                //     //console.log('episode => ', String(Number(j) + 1))
-                //     let episode = 'episode ' + String(Number(j) + 1);
-                //     return (<div key={j}>
-                //         {episode}
-                //     </div>)
-                // }));
-
-                // const handleEpisodes = (season) => {
-                //     // Object.keys(serie).map((el, i) => { 
-                //     //     if(el !== "__v"){
-                //     console.log('test2 => ', serie);
-                //     setEpisodes(Object.keys(serie[season]).map((e, j) => {
-                //         console.log('episode => ', String(Number(j) + 1))
-                //         let episode = 'episode ' + String(Number(j) + 1);
-                //         return (<div key={j}>
-                //             {episode}
-                //         </div>)
-                //     }))
-                //     //     }
-                //     // });
-                // }
-
-                setEpisodes(router.query.episodes);
-                // setSeasons(Object.keys(el.links).map((e, i) => {
-                //     let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
-                //     let season = 'season ' + String(Number(i)+1);
-                //     console.log(String(Number(i)+1));
-                //     if(e !== "__v"){
-                //         return (//<Link key={i} href={{pathname:'/[series]/[seasons]/[episodes]/[episode]', query: {id: el.id, season: router.query.season, episode: String(Number(i)+1)}}} as={`/${el.id}/${router.query.season}/${String(Number(i)+1)}/${String(Number(i)+1)}`}> 
-                //             <div key={i}>
-                //                 {season}
-                //             </div>)
-                //         //</Link>)
-                //     }
-                // })
                 setSeasons(`S${router.query.seasons}`);
+                setEpisodes(router.query.episodes);
 
-                console.log('zidndznkdz => ', articlesList)
+                //console.log('zidndznkdz => ', articlesList)
             }
           });
 
         });
-      },[router.query.series]);
+    },[router.query.series]);
     
 
-
-    
-    // const handleEpisodes = (season) => {
-    //     // Object.keys(serie).map((el, i) => { 
-    //     //     if(el !== "__v"){
-    //     console.log('test2 => ', serie);
-    //     setEpisodes(Object.keys(serie[season]).map((e, j) => {
-    //         console.log('episode => ', String(Number(j) + 1))
-    //         let episode = 'episode ' + String(Number(j) + 1);
-    //         return (<div key={j}>
-    //             {episode}
-    //         </div>)
-    //     }))
-    //     //     }
-    //     // });
-    // }
     // console.log('dzbdbzjdzjdzjbd => ', router.query)
     // console.log('xrctvgbhgcf => ', articlesList.links[`S${router.query.season}`]);
     // console.log('savghbsaubjsa => ', router.query.episodeUrl);
@@ -120,15 +72,15 @@ export default function Episode() {
 
         <Header />
 
+        {isLoaded?
         <main className={styles.main}>
-            {isLoaded?
+            {matches?
             <div className={styles.container}>
                 <div className={styles.infos}>
                     <div className={styles.leftPart}>
                         <img src={articlesList.poster} width={250} />
                     </div>
                     <div className={styles.rightPart}>
-                        {/* <p>book-id <em>{query['url']}</em></p> */}
                         <h1>{articlesList.frenchTitle}</h1>
                         <p>Overview: {articlesList.overview}</p>
                         <p>Ratings: {articlesList.note} ({articlesList.nbVoters})</p>
@@ -148,9 +100,33 @@ export default function Episode() {
                     </div>}
                 </div>
             </div>:
-            <div className={styles.container}>Loading...</div>}
-
-        </main>
+            <div className={styles.smContainer}>
+                <div className={styles.smInfos}>
+                    <div className={styles.smLeftPart}>
+                        <h1>{articlesList.frenchTitle}</h1>
+                        <img src={articlesList.poster} width={250} />
+                    </div>
+                    <div className={styles.smRightPart}>
+                        <p>Overview: {articlesList.overview}</p>
+                        <p>Ratings: {articlesList.note} ({articlesList.nbVoters})</p>
+                        <p>Released on: {articlesList.releaseDate}</p>
+                    </div>
+                </div>
+                <div className={styles.smStream}>
+                    <div className={styles.smIcons}>
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.smLanguageIcon} onClick={() => setLink(articlesList.links[seasons][Number(episodes)].vf)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.smLanguageIcon} onClick={() => setLink(articlesList.links[seasons][Number(episodes)].vostfr)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/english_flag_mlp7wy.png" className={styles.smLanguageIcon} onClick={() => setLink(articlesList.links[seasons][Number(episodes)].vo)} />
+                    </div>
+                    {(link==='')||(link===undefined)?
+                    <div className={styles.smChooseLink}>Please choose the version to display</div>:
+                    <div className={styles.smBackStream}>
+                        <iframe src={link} style={{borderWidth: 0, width: '80vw', height: '50vh'}} allowFullScreen></iframe>
+                    </div>}
+                </div>
+            </div>}
+        </main>:
+        <main className={styles.main}>Loading...</main>}
 
         <Footer />
     </>

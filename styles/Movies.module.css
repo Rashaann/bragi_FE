@@ -22,6 +22,16 @@
   width: 250px;
 }
 
+.smContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 380px;
+  width: 200px;
+}
+
+
+
 .content{
   height: 430px;
   width:  200px;
@@ -29,7 +39,20 @@
   cursor: pointer;
 }
 
+.smContent{
+  height: 350px;
+  width:  170px;
+  border-radius:10px;
+  cursor: pointer;
+}
+
+
+
 .content:hover{
+  box-shadow: 5px -5px 5px rgb(181,37,27);
+}
+
+.smContent:hover{
   box-shadow: 5px -5px 5px rgb(181,37,27);
 }
 
@@ -45,12 +68,24 @@
   border-radius:10px;
 }
 
+.smBackgroundImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 350px;
+  width: 170px;
+  border-radius:10px;
+}
+
 .title{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 10vh;
-  width: 30vw;
+  width: 100vw;
   color: black;
   font-family: 'Barlow Condensed';
   font-size: 30px;

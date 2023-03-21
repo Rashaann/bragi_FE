@@ -13,10 +13,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/pages/_app';
 import Link from 'next/link';
 
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 export default function Season() {
     const router = useRouter();
     const id = router.query.id;
 
+    const matches = useMediaQuery('(min-width:904px)');
 
     const [articlesList, setArticlesList]=useState<any>({});
     const [showIt, setShowIt] = useState<boolean>(false);
@@ -44,9 +47,17 @@ export default function Season() {
                     let episode = 'episode ' + String(Number(j) + 1);
                     let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
                     return (<Link key={j} href={{pathname:'/[series]/[seasons]/[episodes]/episode', query: {id: el.id, url: url, season: router.query.season, episode: String(Number(j)+1), episodeUrl: j}}} as={`/${el.id}/${router.query.seasons}/${String(Number(j)+1)}/episode`} >
+                        {matches?
                         <div className={styles.episodeContainer}>
-                            {episode}
-                        </div>
+                            <div className={styles.episodeContent}>
+                                {episode}
+                            </div>
+                        </div>:
+                        <div className={styles.smEpisodeContainer}>
+                            <div className={styles.smEpisodeContent}>
+                                {episode}
+                            </div>
+                        </div>}
                     </Link>)
                 }));
             }
@@ -69,8 +80,9 @@ export default function Season() {
 
         <Header />
 
+        {isLoaded?
         <main className={styles.main}>
-            {isLoaded?
+            {matches?
             <div className={styles.container}>
                 <div className={styles.infos}>
                     <div className={styles.leftPart}>
@@ -79,28 +91,34 @@ export default function Season() {
                     <div className={styles.rightPart}>
                         {/* <p>book-id <em>{query['url']}</em></p> */}
                         <h1>{articlesList.frenchTitle}</h1>
-                        <p>Overview: {articlesList.overview}</p>
-                        <p>Ratings: {articlesList.note} ({articlesList.nbVoters})</p>
-                        <p>Released on: {articlesList.releaseDate}</p>
+                        <p><span style={{fontWeight: 'bolder'}}>Overview:</span> {articlesList.overview}</p>
+                        <p><span style={{fontWeight: 'bolder'}}>Ratings:</span> {articlesList.note} ({articlesList.nbVoters})</p>
+                        <p><span style={{fontWeight: 'bolder'}}>Released on:</span> {articlesList.releaseDate}</p>
                     </div>
                 </div>
                 <div className={styles.displayEpisodes}>
-                    {/* <div className={styles.icons}>
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vf[0])} />
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vostfr[0])} />
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/english_flag_mlp7wy.png" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vo[0])} />
-                    </div>
-                    {(link==='')||(link===undefined)?
-                    <div className={styles.chooseLink}>Please choose the version to display</div>:
-                    <div className={styles.backStream}>
-                        <iframe src={link} style={{borderWidth: 0}} width={800} height={450} allowFullScreen></iframe>
-                    </div>} */}
                     {episodes}
                 </div>
             </div>:
-            <div className={styles.container}>Loading...</div>}
+            <div className={styles.smContainer}>
+                <div className={styles.smInfos}>
+                    <div className={styles.smLeftPart}>
+                        <h1>{articlesList.frenchTitle}</h1>
+                        <img src={articlesList.poster} width={250} />
+                    </div>
+                    <div className={styles.smRightPart}>
+                        <p><span style={{fontWeight: 'bolder'}}>Overview:</span> {articlesList.overview}</p>
+                        <p><span style={{fontWeight: 'bolder'}}>Ratings:</span> {articlesList.note} ({articlesList.nbVoters})</p>
+                        <p><span style={{fontWeight: 'bolder'}}>Released on:</span> {articlesList.releaseDate}</p>
+                    </div>
+                </div>
+                <div className={styles.smDisplayEpisodes}>
+                    {episodes}
+                </div>
+            </div>}
 
-        </main>
+        </main>:
+        <div className={styles.main}>Loading...</div>}
 
         <Footer />
     </>

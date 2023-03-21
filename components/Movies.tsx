@@ -4,16 +4,16 @@ import Header from './Header';
 
 import styles from '@/styles/Movies.module.css';
 import Footer from './Footer';
-import Router from 'next/router';
 
-import uid2 from 'uid2';
 import { useDispatch } from 'react-redux';
 import { addMoviesToStore } from '@/reducers/bragi';
 
 import Link from 'next/link';
 
-export default function Movies() {
+import useMediaQuery from '@mui/material/useMediaQuery';
 
+export default function Movies() {
+  const matches = useMediaQuery('(min-width:904px)');
   
   const [articlesList, setArticlesList]=useState<any>([]);
   const [showTitle, setShowTitle] = useState<boolean>(false);
@@ -37,11 +37,17 @@ export default function Movies() {
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
+        {matches?
         <div className={styles.container}>
           <div className={styles.content}>
-              <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>       
           </div>
-        </div>
+        </div>:
+        <div className={styles.smContainer}>
+          <div className={styles.smContent}>
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.smBackgroundImg}></div>       
+          </div>
+        </div>}
       </Link>)
     }
   });

@@ -17,6 +17,8 @@ import MovieIcon from '@mui/icons-material/Movie';
 import SlideshowIcon from '@mui/icons-material/Slideshow';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 
+import SearchIcon from '@mui/icons-material/Search';
+
 export default function Header() {
   const matches = useMediaQuery('(min-width:904px)');
 
@@ -121,6 +123,7 @@ export default function Header() {
             <Divider />
 
             <MenuItem>
+              <SearchIcon />
               <input placeholder='Search' className={styles.smInput} />
             </MenuItem>
 

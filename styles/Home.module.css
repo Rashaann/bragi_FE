@@ -42,14 +42,33 @@
   width: 250px;
 }
 
+.smContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 250px;
+}
+
 .content{
-  height: 430px;
+  height: 400px;
+  width:  200px;
+  border-radius:10px;
+  cursor: pointer;
+}
+
+.smContent{
+  height: 370px;
   width:  200px;
   border-radius:10px;
   cursor: pointer;
 }
 
 .content:hover{
+  box-shadow: 5px -5px 5px rgb(181,37,27);
+}
+
+.smContent:hover{
   box-shadow: 5px -5px 5px rgb(181,37,27);
 }
 
@@ -60,7 +79,37 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 430px;
+  height: 400px;
   width: 200px;
   border-radius:10px;
+}
+
+.smBackgroundImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 370px;
+  width: 200px;
+  border-radius:10px;
+}
+
+
+
+.btnContent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 460px;
+  width: 250px;
+}
+
+.smBtnContent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 250px;
 }

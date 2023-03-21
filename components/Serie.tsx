@@ -2,21 +2,22 @@ import React, { useEffect, useState } from 'react';
 
 import Head from 'next/head';
 
-// printed-books/:book-id
+
 import { useRouter } from 'next/router';
 import Header from './Header';
 import Footer from './Footer';
 
 import styles from '../styles/Movie.module.css';
-import { useSelector } from 'react-redux';
 
-import { RootState } from '@/pages/_app';
 import Link from 'next/link';
+
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function Serie() {
     const router = useRouter();
     const id = router.query.id;
 
+    const matches = useMediaQuery('(min-width:904px)');
 
     const [articlesList, setArticlesList]=useState<any>({});
     const [showIt, setShowIt] = useState<boolean>(false);
@@ -48,28 +49,13 @@ export default function Serie() {
                     </div>)
                 }));
 
-                // const handleEpisodes = (season) => {
-                //     // Object.keys(serie).map((el, i) => { 
-                //     //     if(el !== "__v"){
-                //     console.log('test2 => ', serie);
-                //     setEpisodes(Object.keys(serie[season]).map((e, j) => {
-                //         console.log('episode => ', String(Number(j) + 1))
-                //         let episode = 'episode ' + String(Number(j) + 1);
-                //         return (<div key={j}>
-                //             {episode}
-                //         </div>)
-                //     }))
-                //     //     }
-                //     // });
-                // }
-
                 setSeasons(Object.keys(el.links).map((e, i) => {
                     let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
                     let season = 'season ' + String(Number(i)+1);
                     console.log(String(Number(i)+1));
                     if(e !== "__v"){
                         return (<Link key={i} href={{pathname:'/[series]/[seasons]/season', query: {id: el.id, url: url, season: String(Number(i)+1), seasonUrl: `season${String(Number(i)+1)}`}}} as={`/${el.id}/${String(Number(i)+1)}/season`}>
-                            <div className={styles.seasonContainer}>
+                            <div className={styles.smSeasonContainer}>
                                 {season}
                             </div>
                         </Link>)
@@ -80,24 +66,6 @@ export default function Serie() {
 
         });
       },[router.query.series]);
-    
-
-
-    
-    // const handleEpisodes = (season) => {
-    //     // Object.keys(serie).map((el, i) => { 
-    //     //     if(el !== "__v"){
-    //     console.log('test2 => ', serie);
-    //     setEpisodes(Object.keys(serie[season]).map((e, j) => {
-    //         console.log('episode => ', String(Number(j) + 1))
-    //         let episode = 'episode ' + String(Number(j) + 1);
-    //         return (<div key={j}>
-    //             {episode}
-    //         </div>)
-    //     }))
-    //     //     }
-    //     // });
-    // }
     
     
   return (
@@ -111,8 +79,9 @@ export default function Serie() {
 
         <Header />
 
-        <main className={styles.main}>
             {isLoaded?
+        <main className={styles.main}>
+            {matches?
             <div className={styles.container}>
                 <div className={styles.infos}>
                     <div className={styles.leftPart}>
@@ -140,9 +109,24 @@ export default function Serie() {
                     {seasons}
                 </div>
             </div>:
-            <div className={styles.container}>Loading...</div>}
-
-        </main>
+            <div className={styles.smContainer}>
+                <div className={styles.smInfos}>
+                    <div className={styles.smLeftPart}>
+                        <h1>{articlesList.frenchTitle}</h1>
+                        <img src={articlesList.poster} width={250} />
+                    </div>
+                    <div className={styles.smRightPart}>
+                        <p><span style={{fontWeight: 'bolder'}}>Overview:</span> {articlesList.overview}</p>
+                        <p><span style={{fontWeight: 'bolder'}}>Ratings:</span> {articlesList.note} ({articlesList.nbVoters})</p>
+                        <p><span style={{fontWeight: 'bolder'}}>Released on:</span> {articlesList.releaseDate}</p>
+                    </div>
+                </div>
+                <div className={styles.smDisplaySeasons}>
+                    {seasons}
+                </div>
+            </div>}
+        </main>:
+        <div className={styles.main}>Loading...</div>}
 
         <Footer />
     </>
