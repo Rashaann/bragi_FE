@@ -26,8 +26,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
-  width: 170px;
+  height: 340px;
+  width: 175px;
 }
 
 
@@ -40,8 +40,8 @@
 }
 
 .smContent{
-  height: 280px;
-  width:  140px;
+  height: 300px;
+  width:  165px;
   border-radius:10px;
   cursor: pointer;
 }
@@ -75,8 +75,8 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 280px;
-  width: 140px;
+  height: 300px;
+  width: 165px;
   border-radius:10px;
 }
 
