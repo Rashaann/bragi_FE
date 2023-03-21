@@ -11,7 +11,7 @@
   display: inherit;
   justify-content: space-around;
   flex-wrap: wrap;
-  width: 90vw;
+  width: 100vw;
 }
 
 .container{
@@ -26,8 +26,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 380px;
-  width: 200px;
+  height: 300px;
+  width: 170px;
 }
 
 
@@ -40,8 +40,8 @@
 }
 
 .smContent{
-  height: 350px;
-  width:  170px;
+  height: 280px;
+  width:  140px;
   border-radius:10px;
   cursor: pointer;
 }
@@ -75,8 +75,8 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 350px;
-  width: 170px;
+  height: 280px;
+  width: 140px;
   border-radius:10px;
 }
 
