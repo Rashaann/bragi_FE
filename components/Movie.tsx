@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 
 import Head from 'next/head';
 
@@ -10,6 +10,7 @@ import Footer from './Footer';
 import styles from '../styles/Movie.module.css';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
+
 
 export default function Movie() {
     const router = useRouter();
@@ -35,7 +36,6 @@ export default function Movie() {
     
 
     useEffect(() => {
-
         fetch("https://bragi-be.vercel.app/movies/all")
         .then(response => response.json())
         .then(data => {
@@ -49,8 +49,7 @@ export default function Movie() {
         });
         
       },[router.query.movie]);
-
-
+      
   return (
     <>
         <Head>
@@ -87,7 +86,7 @@ export default function Movie() {
                     {(link==='')||(link===undefined)?
                     <div className={styles.chooseLink}>Please choose the version to display</div>:
                     <div className={styles.backStream}>
-                        <iframe src={link} style={{borderWidth: 0}} width={800} height={450} allowFullScreen></iframe>
+                        <iframe id='test' src={link} style={{borderWidth: 0}} className={styles.test} width={800} height={450} allowFullScreen ></iframe>
                     </div>}
                 </div>
             </div>:
@@ -113,7 +112,7 @@ export default function Movie() {
                     {(link==='')||(link===undefined)?
                     <div className={styles.smChooseLink}>Please choose the version to display</div>:
                     <div className={styles.smBackStream}>
-                        <iframe src={link} style={{borderWidth: 0, width: '80vw', height: '50vh'}} allowFullScreen></iframe>
+                        <iframe id='test' src={link} style={{borderWidth: 0, width: '80vw', height: '50vh'}} className={styles.test} allowFullScreen></iframe>
                     </div>}
                 </div>
             </div>}

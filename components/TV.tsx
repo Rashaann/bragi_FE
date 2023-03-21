@@ -46,7 +46,7 @@ export default function TV() {
   })
 
 
-  const [tvSpain, setTvSpain] = useState<any>(<iframe src="https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fspi-filmstream-1-nl.samsung.wurl.tv%2Fplaylist.m3u8&duration=734.097415" style={{width: '80vw', height: '80vh'}} allow="autoplay; encrypted-media" allowFullScreen></iframe>);
+  const [tvSpain, setTvSpain] = useState<any>(<iframe src="https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fspi-filmstream-1-nl.samsung.wurl.tv%2Fplaylist.m3u8&duration=734.097415" style={{width: '80vw', height: '80vh'}} allow="encrypted-media" allowFullScreen></iframe>);
 
 
   const displayTvSpain = (source:string) => {

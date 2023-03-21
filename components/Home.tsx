@@ -130,6 +130,7 @@ export default function Home() {
         <meta name="description" content="Free streaming website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icon.png" />
+        <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
       </Head>
 
         <Header />
