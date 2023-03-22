@@ -99,7 +99,6 @@ export default function Home() {
         </div>}
       </Link>)
     } else if(i === seriesList.length-1){
-      console.log('youhou')
       return (<div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: 460, width: 250}}>
         <Link href={{pathname:`/series`}}>
           <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 200, height: 70, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more series</button>

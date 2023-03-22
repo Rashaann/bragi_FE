@@ -72,7 +72,7 @@ export default function Season() {
   return (
     <>
         <Head>
-            <title>{articlesList.frenchTitle} | Season {router.query.season}</title>
+            <title>{articlesList.frenchTitle} | Season {router.query.seasons}</title>
             <meta name="description" content="Free streaming website" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="https://res.cloudinary.com/dldeqai4u/image/upload/v1679305932/bragi/icon_izqe4d.png" />
@@ -90,7 +90,7 @@ export default function Season() {
                     </div>
                     <div className={styles.rightPart}>
                         {/* <p>book-id <em>{query['url']}</em></p> */}
-                        <h1>{articlesList.frenchTitle}</h1>
+                        <h1>{articlesList.frenchTitle} Season {router.query.seasons}</h1>
                         <p><span style={{fontWeight: 'bolder'}}>Overview:</span> {articlesList.overview}</p>
                         <p><span style={{fontWeight: 'bolder'}}>Ratings:</span> {articlesList.note} ({articlesList.nbVoters})</p>
                         <p><span style={{fontWeight: 'bolder'}}>Released on:</span> {articlesList.releaseDate}</p>
@@ -103,7 +103,7 @@ export default function Season() {
             <div className={styles.smContainer}>
                 <div className={styles.smInfos}>
                     <div className={styles.smLeftPart}>
-                        <h1>{articlesList.frenchTitle}</h1>
+                        <h1>{articlesList.frenchTitle} Season {router.query.seasons}</h1>
                         <img src={articlesList.poster} width={250} />
                     </div>
                     <div className={styles.smRightPart}>

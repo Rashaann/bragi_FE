@@ -61,6 +61,38 @@
     min-height: 140vh;
 }
 
+.nearBtns{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 40vw;
+    height: 10vh;
+}
+
+.prevNextBtns{
+    width: 120px;
+    height: 45px;
+    background-color: black;
+    color: rgb(218,38,41);
+    font-family: 'Barlow Condensed';
+    font-size: 20px;
+    border-width: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.notAllowedBtns{
+    width: 120px;
+    height: 45px;
+    background-color: black;
+    color: rgb(218,38,41);
+    font-family: 'Barlow Condensed';
+    font-size: 20px;
+    border-width: 1px;
+    border-radius: 5px;
+    cursor: not-allowed;
+}
+
 
 .icons{
     display: flex;
@@ -160,7 +192,7 @@
     border-radius: 10px;
 }
 
-.episodeContainer:hover{
+.episodeContent:hover{
     box-shadow: 5px -5px 5px rgb(181,37,27);
 }
 
@@ -245,6 +277,38 @@
     min-height: 100vh;
 }
 
+.smNearBtns{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90vw;
+    height: 10vh;
+}
+
+
+.smPrevNextBtns{
+    width: 120px;
+    height: 45px;
+    background-color: black;
+    color: rgb(218,38,41);
+    font-family: 'Barlow Condensed';
+    font-size: 20px;
+    border-width: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.smNotAllowedBtns{
+    width: 120px;
+    height: 45px;
+    background-color: black;
+    color: rgb(218,38,41);
+    font-family: 'Barlow Condensed';
+    font-size: 20px;
+    border-width: 1px;
+    border-radius: 5px;
+    cursor: not-allowed;
+}
 
 .smIcons{
     display: flex;
