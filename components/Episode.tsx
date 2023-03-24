@@ -13,6 +13,10 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/pages/_app';
 import Link from 'next/link';
 
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
 
 
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -63,8 +67,15 @@ export default function Episode() {
     //console.log('fzudzbjdzjbd => ', articlesList.links[seasons]);
     // console.log('season => ', seasons);[Number(episodes)]
     //console.log('episode => ', episodes);
-    console.log(Number(router.query.episodes)-1===1);
-    // const disableBtn = Number(router.query.episodes)+1===articlesList.links[`S${router.query.seasons}`].length
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+  
   return (
     <>
         <Head>
@@ -115,6 +126,30 @@ export default function Episode() {
                     <div className={styles.backStream}>
                         <iframe src={link} style={{borderWidth: 0, width: '60vw', height: '80vh'}} allowFullScreen></iframe>
                     </div>}
+                    <div className={styles.specificEpisode}>
+                        <Button
+                            id="basic-button"
+                            aria-controls={open ? 'basic-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            onClick={handleClick}
+                        >
+                            Dashboard
+                        </Button>
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                            'aria-labelledby': 'basic-button',
+                            }}
+                        >
+                            <MenuItem onClick={handleClose}>Profile</MenuItem>
+                            <MenuItem onClick={handleClose}>My account</MenuItem>
+                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        </Menu>
+                    </div>
                 </div>
             </div>:
             <div className={styles.smContainer}>
