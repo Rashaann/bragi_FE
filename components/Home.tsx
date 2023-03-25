@@ -147,21 +147,19 @@ export default function Home() {
           <div style={{display:'flex', overflowX: 'scroll'}}>{displayLogo}</div>
         </div>
       </main>
-      <div>
-      {/* <video
+
+      <video
         id="my-video"
-        class="video-js"
         controls
         preload="auto"
         width="640"
         height="264"
         data-setup="{}"
       >
-        <source src="https://edef4.pcloud.com/cfZrVxrCYZ0q7cDDZDwY8ZZHaDmo7ZQ5ZZKm5ZZcVTzxZSVZLVZj5Z25Ze7ZiXZH5ZjXZD5ZkVZx7Ze0Z4XZw0ZoPUc5TcVP9RBL0QwCl3I7VaL9Duk/captain_marvel.mp4"/>
+        <source src="https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308709&output=16"/>
 
-      </video> */}
-      </div>
-
+      </video>
+      
       <Footer />
     </>
   )

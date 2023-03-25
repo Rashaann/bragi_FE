@@ -37,14 +37,13 @@ export default function TV() {
   ];
 
 
-  const logosItaly:string[] = ["rak_action_tv.jpg", "rak_comedy_tv.jpg", "rak_spotlight.jpg"];
-  const italianName:string[] = ["Rakuten TV Action Movies Italy", "Rakuten TV Comedy Movies Italy", "Rakuten TV Spotlight Italy"];
+  const logosItaly:string[] = ["rak_action_tv.jpg", "rak_comedy_tv.jpg", "rak_spotlight.jpg", "https://i.imgur.com/zDByOwo.png"];
+  const italianName:string[] = ["Rakuten TV Action Movies Italy", "Rakuten TV Comedy Movies Italy", "Rakuten TV Spotlight Italy", "Super!"];
   const italianSources:string[] = [
     "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Frakuten-actionmovies-6-eu.rakuten.wurl.tv%2Fplaylist.m3u8&duration=734.097415",
     "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Frakuten-comedymovies-6-eu.rakuten.wurl.tv%2Fplaylist.m3u8&duration=734.097415",
     "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Frakuten-spotlight-6-eu.rakuten.wurl.tv%2Fplaylist.m3u8&duration=734.097415",
-    "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Frakuten-spotlight-2-es.samsung.wurl.tv%2Fplaylist.m3u8&duration=734.097415",
-
+    "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fvimnitaly.akamaized.net%2Fhls%2Flive%2F2094034%2Fsuper%2Fmaster.m3u8&duration=734.097415",
   ];
 
   const logosJapan:string[] = ["nhk_bs1.jpg", "nhk_bsp.jpg", "nhk_e.jpg", "nhk_g.jpg", "nhk_world_japan.jpg", "tbs.jpg", "tv_tokyo.jpg"];
@@ -61,11 +60,12 @@ export default function TV() {
   ];
 
 
-  const logosFrance:string[] = ["nrj12.jpg", "tf1.jpg"];
-  const frenchName:string[] = ["NRJ12", "TF1"];
+  const logosFrance:string[] = ["nrj12.jpg", "tf1.jpg", "cherie25.jpg"];
+  const frenchName:string[] = ["NRJ12", "TF1", "Cherie 25"];
   const frenchSources:string[] = [
     "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fnrj12.nrjaudio.fm%2Fhls%2Flive%2F2038374%2Fnrj_12%2Fmaster.m3u8&duration=734.097415",
-    "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Flive-tf1-hls-dai.cdn-1.diff.tf1.fr%2Fout%2Fv1%2Fc2e382be3aa2486e8753747e7bb6157e%2Findex.m3u8&duration=734.097415"
+    "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Flive-tf1-hls-dai.cdn-1.diff.tf1.fr%2Fout%2Fv1%2Fc2e382be3aa2486e8753747e7bb6157e%2Findex.m3u8&duration=734.097415",
+    "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fcherie25.nrjaudio.fm%2Fhls%2Flive%2F2038375%2Fc25%2FFHD.m3u8&duration=734.097415",
   ];
   
 
@@ -215,6 +215,21 @@ export default function TV() {
           <div>
             {tvFrance}
           </div>
+        </div>
+
+        <div className={styles.description}>
+          <h1>M6</h1>
+          <video
+        id="my-video"
+        controls
+        preload="auto"
+        width="640"
+        height="264"
+        data-setup="{}"
+      >
+        <source src="https://shls-m6-france-prod-dub.shahid.net/out/v1/c8a9f6e000cd4ebaa4d2fc7d18c15988/index.m3u8"/>
+
+      </video>
         </div>
       </main>
 
