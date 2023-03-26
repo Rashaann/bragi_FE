@@ -148,7 +148,7 @@ export default function Home() {
         </div>
       </main>
 
-      <video
+      {/* <video
         id="my-video"
         controls
         preload="auto"
@@ -158,7 +158,7 @@ export default function Home() {
       >
         <source src="https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308709&output=16"/>
 
-      </video>
+      </video> */}
       
       <Footer />
     </>

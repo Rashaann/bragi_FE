@@ -21,6 +21,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 
+
 export default function Episode() {
     const router = useRouter();
     const id = router.query.id;
@@ -30,12 +31,17 @@ export default function Episode() {
     const [articlesList, setArticlesList]=useState<any>({});
     const [showIt, setShowIt] = useState<boolean>(false);
     const [link, setLink] = useState<string>('');
-
+    
 
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [serie, setSerie] = useState<any>();
     const [seasons, setSeasons] = useState<any>();
     const [episodes, setEpisodes] = useState<any>();
+
+    const [selectedSeason, setSelectedSeason] = useState<string>('');
+    const [selectedEpisode, setSelectedEpisode] = useState<string>('');
+    const [displaySeasons, setDisplaySeasons] = useState<any>(null);
+    const [displayEpisodes, setDisplayEpisodes] = useState<any>(null);
     
 
     useEffect(() => {
@@ -52,12 +58,17 @@ export default function Episode() {
 
                 setSeasons(`S${router.query.seasons}`);
                 setEpisodes(router.query.episodes);
-
+                
                 //console.log('zidndznkdz => ', articlesList)
+                
+                
+                
+                
+                console.log("selectedSeason => ", selectedSeason);
             }
-          });
-
         });
+    });
+
     },[router.query]);
     
 
@@ -67,15 +78,72 @@ export default function Episode() {
     //console.log('fzudzbjdzjbd => ', articlesList.links[seasons]);
     // console.log('season => ', seasons);[Number(episodes)]
     //console.log('episode => ', episodes);
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      setAnchorEl(event.currentTarget);
+    const [anchorElSeason, setAnchorElSeason] = React.useState<null | HTMLElement>(null);
+    const openSeason = Boolean(anchorElSeason);
+
+    const [anchorElEpisode, setAnchorElEpisode] = React.useState<null | HTMLElement>(null);
+    const openEpisode = Boolean(anchorElEpisode);
+
+    
+    const handleClickSeason = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setAnchorElSeason(event.currentTarget);
     };
-    const handleClose = () => {
-      setAnchorEl(null);
+
+
+    const handleCloseSeason = () => {
+      setAnchorElSeason(null);
     };
+
+
+    const handleClickEpisode = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorElEpisode(event.currentTarget);
+      };
   
+  
+      const handleCloseEpisode = () => {
+        setAnchorElEpisode(null);
+      };
+
+
+
+
+
+    const selectSeason = (index:number) => {
+        setSelectedSeason(`S${index+1}`);
+        handleCloseSeason();
+    }
+
+    const selectEpisode = (index:number) => {
+        setSelectedEpisode(`${index+1}`);
+        handleCloseEpisode();
+    }
+
+    
+
+    
+
+    let dispSeasons:any= [];
+    let dispEpisodes:any= [];
+    // const [showBtn, setShowBtn] = useState<boolean>(false);
+    if(JSON.stringify(articlesList) !== JSON.stringify({})){
+        Object.keys(articlesList.links).map((e,i: React.Key) => {
+            if(e!== '__v'){
+                dispSeasons.push(<MenuItem key={i} onClick={() => selectSeason(Number(i))}>Season {Number(i)+1}</MenuItem>);
+            }
+        })
+        
+        if(JSON.stringify(displaySeasons) !== JSON.stringify([])){
+            articlesList?.links[selectedSeason]?.map((e: any,i: React.Key) => {
+                dispEpisodes.push(<MenuItem key={i} onClick={() => selectEpisode(Number(i))}>Episode {Number(i)+1}</MenuItem>);
+            });
+            // setShowBtn(true);
+        }
+        console.log(selectedEpisode)
+    }
+    
+
+
+
   return (
     <>
         <Head>
@@ -127,28 +195,63 @@ export default function Episode() {
                         <iframe src={link} style={{borderWidth: 0, width: '60vw', height: '80vh'}} allowFullScreen></iframe>
                     </div>}
                     <div className={styles.specificEpisode}>
-                        <Button
-                            id="basic-button"
-                            aria-controls={open ? 'basic-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? 'true' : undefined}
-                            onClick={handleClick}
-                        >
-                            Dashboard
-                        </Button>
-                        <Menu
-                            id="basic-menu"
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleClose}
-                            MenuListProps={{
-                            'aria-labelledby': 'basic-button',
-                            }}
-                        >
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
-                            <MenuItem onClick={handleClose}>My account</MenuItem>
-                            <MenuItem onClick={handleClose}>Logout</MenuItem>
-                        </Menu>
+                        <div>
+                            <Button
+                                id="basic-button"
+                                aria-controls={openSeason ? 'basic-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={openSeason ? 'true' : undefined}
+                                onClick={handleClickSeason}
+                                style={{color: 'black'}}
+                            >
+                                Season
+                            </Button>
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorElSeason}
+                                open={openSeason}
+                                onClose={handleCloseSeason}
+                                MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                {dispSeasons}
+                            </Menu>
+                        </div>
+                        <p>{selectedSeason[1]}</p>
+
+
+                        <div>
+                            <Button
+                                id="basic-button"
+                                aria-controls={openEpisode ? 'basic-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={openEpisode ? 'true' : undefined}
+                                onClick={handleClickEpisode}
+                                style={{color: 'black'}}
+                            >
+                                Episode
+                            </Button>
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorElEpisode}
+                                open={openEpisode}
+                                onClose={handleCloseEpisode}
+                                MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                {dispEpisodes}
+                            </Menu>
+                        </div>
+                        <p>{selectedEpisode}</p>
+                        <div>
+                            {selectedEpisode != '' ?
+                            <Link href={{pathname:'/[series]/[seasons]/[episodes]/episode', query: {id: articlesList.id, season: selectedSeason.slice(1), episode: selectedEpisode}}} as={`/${articlesList.id}/${selectedSeason.slice(1)}/${selectedEpisode}/episode`}>
+                                <button className={styles.prevNextBtns}>Go</button>
+                            </Link>:
+                            <div></div>}
+                        </div>
                     </div>
                 </div>
             </div>:
@@ -188,6 +291,66 @@ export default function Episode() {
                     <div className={styles.smBackStream}>
                         <iframe src={link} style={{borderWidth: 0, width: '80vw', height: '50vh'}} allowFullScreen></iframe>
                     </div>}
+
+                    <div className={styles.specificEpisode}>
+                        <div>
+                            <Button
+                                id="basic-button"
+                                aria-controls={openSeason ? 'basic-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={openSeason ? 'true' : undefined}
+                                onClick={handleClickSeason}
+                                style={{color: 'black'}}
+                            >
+                                Season
+                            </Button>
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorElSeason}
+                                open={openSeason}
+                                onClose={handleCloseSeason}
+                                MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                {dispSeasons}
+                            </Menu>
+                        </div>
+                        <p>{selectedSeason[1]}</p>
+
+
+                        <div>
+                            <Button
+                                id="basic-button"
+                                aria-controls={openEpisode ? 'basic-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={openEpisode ? 'true' : undefined}
+                                onClick={handleClickEpisode}
+                                style={{color: 'black'}}
+                            >
+                                Episode
+                            </Button>
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorElEpisode}
+                                open={openEpisode}
+                                onClose={handleCloseEpisode}
+                                MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                                }}
+                            >
+                                {dispEpisodes}
+                            </Menu>
+                        </div>
+                        <p>{selectedEpisode}</p>
+                        <div>
+                            {selectedEpisode != '' ?
+                            <Link href={{pathname:'/[series]/[seasons]/[episodes]/episode', query: {id: articlesList.id, season: selectedSeason.slice(1), episode: selectedEpisode}}} as={`/${articlesList.id}/${selectedSeason.slice(1)}/${selectedEpisode}/episode`}>
+                                <button className={styles.prevNextBtns}>Go</button>
+                            </Link>:
+                            <div></div>}
+                        </div>
+                    </div>
                 </div>
             </div>}
         </main>:
