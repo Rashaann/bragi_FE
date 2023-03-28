@@ -23,6 +23,7 @@
     "jQuery": "^1.7.4",
     "jsdom": "^21.1.1",
     "next": "13.2.4",
+    "node-fetch": "2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
