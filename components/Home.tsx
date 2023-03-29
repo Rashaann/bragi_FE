@@ -50,12 +50,12 @@ export default function Home() {
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
         {matches?
-        <div className={styles.container}>
+        <div key={i} className={styles.container}>
           <div className={styles.content}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
           </div>
         </div>:
-        <div className={styles.smContainer}>
+        <div key={i} className={styles.smContainer}>
           <div className={styles.smContent}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.smBackgroundImg}></div>       
           </div>
@@ -87,12 +87,12 @@ export default function Home() {
       return (
       <Link key={i} href={{pathname:`/[series]/serie`, query: {id: el.id, url: url}}} as={`/${el.id}/serie`} passHref>
         {matches?
-        <div className={styles.container}>
+        <div key={i} className={styles.container}>
           <div className={styles.content}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
           </div>
         </div>:
-        <div className={styles.smContainer}>
+        <div key={i} className={styles.smContainer}>
           <div className={styles.smContent}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.smBackgroundImg}></div>       
           </div>
@@ -116,7 +116,7 @@ export default function Home() {
 
   const displayLogo = logos.map((el, i) => {
     return (<Link key={i} href="/tv">
-        <div style={{ cursor: 'pointer', width: 150, height:150 }}>
+        <div key={i} style={{ cursor: 'pointer', width: 150, height:150 }}>
             <img src={el} width={100} height={100}/>
             <p>{channelName[i]}</p>
       </div>

@@ -60,7 +60,11 @@ export default function Episode() {
                 setEpisodes(router.query.episodes);
                 
                 //console.log('zidndznkdz => ', articlesList)
-                
+                // fetch('https://bragi-be.vercel.app/movies/movieUrl/25021072094')
+                // .then(response => response.json())
+                // .then(dat => {
+                //     console.log(dat)
+                // })
                 
                 
                 
@@ -192,7 +196,18 @@ export default function Episode() {
                     {(link==='')||(link===undefined)?
                     <div className={styles.chooseLink}>Please choose the version to display</div>:
                     <div className={styles.backStream}>
-                        <iframe src={link} style={{borderWidth: 0, width: '60vw', height: '80vh'}} allowFullScreen></iframe>
+                        {/* <iframe src={link} style={{borderWidth: 0, width: '60vw', height: '80vh'}} allowFullScreen></iframe> */}
+                        {/* <iframe src="https://filedn.eu/lYGn2UnA3LOHQ5b3d2PfgxL/xmen_vostfr.mp4" style={{borderWidth: 0, width: '60vw', height: '80vh'}} allowFullScreen></iframe> */}
+                        <video
+                            id="my-video"
+                            controls
+                            preload="auto"
+                            width="640"
+                            height="264"
+                            data-setup="{}"
+                        >
+                            <source src={link} type="video/mp4" />
+                        </video>
                     </div>}
                     <div className={styles.specificEpisode}>
                         <div>

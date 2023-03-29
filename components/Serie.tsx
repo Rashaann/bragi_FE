@@ -39,7 +39,7 @@ export default function Serie() {
                 setArticlesList(el);
                 setSerie(el.links);
                 setIsLoaded(true);
-                console.log('bjncrd => ', el.links['S1'])
+                // console.log('bjncrd => ', el.links['S1'])
 
                 setEpisodes(Object.keys(el.links[`S${String(1)}`]).map((e, j) => {
                     console.log('episode => ', String(Number(j) + 1))
