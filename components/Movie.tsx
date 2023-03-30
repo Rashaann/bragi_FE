@@ -134,6 +134,7 @@ export default function Movie() {
                             width="640"
                             height="264"
                             data-setup="{}"
+                            className={styles.chooseLink}
                         >
                             <source src={link} type="video/mp4" />
                         </video>
@@ -171,6 +172,7 @@ export default function Movie() {
                             width="640"
                             height="264"
                             data-setup="{}"
+                            className={styles.smChooseLink}
                         >
                             <source src={link} type="video/mp4" />
                         </video>

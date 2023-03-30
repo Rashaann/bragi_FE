@@ -205,6 +205,7 @@ export default function Episode() {
                             width="640"
                             height="264"
                             data-setup="{}"
+                            className={styles.chooseLink}
                         >
                             <source src={link} type="video/mp4" />
                         </video>
@@ -304,7 +305,18 @@ export default function Episode() {
                     {(link==='')||(link===undefined)?
                     <div className={styles.smChooseLink}>Please choose the version to display</div>:
                     <div className={styles.smBackStream}>
-                        <iframe src={link} style={{borderWidth: 0, width: '80vw', height: '50vh'}} allowFullScreen></iframe>
+                        {/* <iframe src={link} style={{borderWidth: 0, width: '80vw', height: '50vh'}} allowFullScreen></iframe> */}
+                        <video
+                            id="my-video"
+                            controls
+                            preload="auto"
+                            width="640"
+                            height="264"
+                            data-setup="{}"
+                            className={styles.smChooseLink}
+                        >
+                            <source src={link} type="video/mp4" />
+                        </video>
                     </div>}
 
                     <div className={styles.specificEpisode}>
