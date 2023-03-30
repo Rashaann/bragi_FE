@@ -43,6 +43,12 @@ export default function Footer() {
             <Link href={{pathname:`/movies/category/[category]`, query: {id: 'action'}}} as={'/movies/category/action'}>
               <p>Action</p>
             </Link>
+            <Link href={{pathname:`/movies/category/[category]`, query: {id: 'scifi'}}} as={'/movies/category/scifi'}>
+              <p>Scifi</p>
+            </Link>
+            <Link href={{pathname:`/movies/category/[category]`, query: {id: 'animation'}}} as={'/movies/category/animation'}>
+              <p>Animation</p>
+            </Link>
           </div>
           <div className={styles.subContent}>
             <h1>Series</h1>
@@ -93,6 +99,12 @@ export default function Footer() {
               </Link>
               <Link href={{pathname:`/movies/category/[category]`, query: {id: 'action'}}} as={'/movies/category/action'}>
                 <p>Action</p>
+              </Link>
+              <Link href={{pathname:`/movies/category/[category]`, query: {id: 'scifi'}}} as={'/movies/category/scifi'}>
+                <p>Scifi</p>
+              </Link>
+              <Link href={{pathname:`/movies/category/[category]`, query: {id: 'animation'}}} as={'/movies/category/animation'}>
+                <p>Animation</p>
               </Link>
             </AccordionDetails>
           </Accordion>
