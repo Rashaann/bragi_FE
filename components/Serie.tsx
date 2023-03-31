@@ -55,9 +55,17 @@ export default function Serie() {
                     console.log(String(Number(i)+1));
                     if(e !== "__v"){
                         return (<Link key={i} href={{pathname:'/[series]/[seasons]/season', query: {id: el.id, url: url, season: String(Number(i)+1), seasonUrl: `season${String(Number(i)+1)}`}}} as={`/${el.id}/${String(Number(i)+1)}/season`}>
+                            {matches?
+                            <div className={styles.seasonContainer}>
+                                <div className={styles.seasonContent}>
+                                    {season}
+                                </div>
+                            </div>:
                             <div className={styles.smSeasonContainer}>
-                                {season}
-                            </div>
+                                <div className={styles.smSeasonContent}>
+                                    {season}
+                                </div>
+                            </div>}
                         </Link>)
                     }
                 }));

@@ -137,11 +137,24 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 60vw;
-    height: 60vh;
+    flex-wrap: wrap;
+    width: 90vw;
+    min-height: 80vh;
 }
 
+
+
 .seasonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 250px;
+}
+
+
+
+.seasonContent{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -154,7 +167,7 @@
     border-radius: 10px;
 }
 
-.seasonContainer:hover{
+.seasonContent:hover{
     box-shadow: 5px -5px 5px rgb(181,37,27);
 }
 
@@ -367,11 +380,23 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100vw;
-    height: 60vh;
+    flex-wrap: wrap;
+    width: 90vw;
+    min-height: 80vh;
 }
 
+
 .smSeasonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 250px;
+}
+
+
+
+.smSeasonContent{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -384,7 +409,7 @@
     border-radius: 10px;
 }
 
-.smSeasonContainer:hover{
+.smSeasonContent:hover{
     box-shadow: 5px -5px 5px rgb(181,37,27);
 }
 
