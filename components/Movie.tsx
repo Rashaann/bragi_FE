@@ -10,6 +10,8 @@ import Footer from './Footer';
 import styles from '../styles/Movie.module.css';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+import Link from 'next/link';
 
 
 export default function Movie() {
@@ -32,13 +34,8 @@ export default function Movie() {
         </main>
     );
 
-
-    // Initialisation of state variables for each "players"
-    // const [vf, setVf] = useState<string>('');
-    // const [vostfr, setVostfr] = useState<string>('');
-    // const [vo, setVo] = useState<string>('');
-
- 
+    const [matchedMovies, setMatchedMovies] = useState<any>([]);
+    const [movieCategory, setMovieCategory] = useState<string>('');
 
 
     useEffect(() => {
@@ -46,47 +43,51 @@ export default function Movie() {
         .then(response => response.json())
         .then(data => {
             // console.log('test => ', router.query)
-          data.list.map((el:{id:string}) => {
-              if(el.id === router.query.movie){
+          data.list.map((el:{id:string, category:string}) => {
+            if(el.id === router.query.movie){
                 setArticlesList(el);
+                setMovieCategory(el.category);
                 setIsDataLoaded(true);
-
-
-
-
-
-            // console.log('id => ', el.pcloudIds.vf)
-            // if(el.pcloudIds.vf){
-            //     fetch(`https://bragi-be.vercel.app/movies/movieUrl/${el.pcloudIds.vf}`)
-            //     .then(response => response.json())
-            //     .then(movieVf => {
-            //         console.log(movieVf);
-            //         setVf(movieVf.url);
-            //     })
-            // }
-
-            // if(el.pcloudIds.vostfr){
-            //     fetch(`https://bragi-be.vercel.app/movies/movieUrl/${el.pcloudIds.vostfr}`)
-            //     .then(response => response.json())
-            //     .then(movieVostfr => {
-            //         setVf(movieVostfr.url);
-            //     })
-            // }
-
-            // if(el.pcloudIds.vo){
-            //     fetch(`https://bragi-be.vercel.app/movies/movieUrl/${el.pcloudIds.vo}`)
-            //     .then(response => response.json())
-            //     .then(movieVo => {
-            //         setVf(movieVo.url);
-            //     })
-            // }
-
-                // console.log(el.pcloudIds);
             }
-          })
+        })
+        })
+
+
+        fetch("https://bragi-be.vercel.app/movies/all")
+        .then(response => response.json())
+        .then(data => {
+          let matchingMovies:object[] = [];
+          data.list.map((el:{id:string, category:string}) => {
+            if(JSON.stringify(el.category) === JSON.stringify(movieCategory)){
+                matchingMovies.push(el);
+            }
+            });
+            setMatchedMovies(matchingMovies);
         });
-        
-      },[router.query.movie]);
+    
+    },[router.query.movie, movieCategory]);
+
+
+    let otherMovies:any;
+    {isDataLoaded?
+    otherMovies = matchedMovies.sort(function(){return 0.5 - Math.random()}).map((el:any,i:React.Key) => {
+        if(el.id !== router.query.movie && i<4){
+            return(<Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
+            {matches?
+            <div key={i} className={styles.movieCont}>
+              <div className={styles.content}>
+                  <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>       
+              </div>
+            </div>:
+            <div key={i} className={styles.smMovieCont}>
+              <div className={styles.smContent}>
+                  <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.smBackgroundImg}></div>       
+              </div>
+            </div>}
+          </Link>)
+        }
+    }):
+    otherMovies = <div></div>}
       
   return (
     <>
@@ -141,6 +142,10 @@ export default function Movie() {
                         {/* <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script> */}
                     </div>}
                 </div>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                    <p>Movies you may like</p>
+                    <div style={{display: 'flex'}}>{otherMovies}</div>
+                </div>
             </div>:
             <div className={styles.smContainer}>
                 <div className={styles.smInfos}>
@@ -177,6 +182,10 @@ export default function Movie() {
                             <source src={link} type="video/mp4" />
                         </video>
                     </div>}
+                </div>
+                <div style={{display: 'flex', flexDirection: 'column', width:'95vw'}}>
+                    <p>Movies you may like</p>
+                    <div style={{display: 'flex', width:'95vw', overflowX: 'scroll'}}>{otherMovies}</div>
                 </div>
             </div>}
         </main>:
