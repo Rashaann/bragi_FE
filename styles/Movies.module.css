@@ -9,6 +9,14 @@
   
 .body {
   display: inherit;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.bodyCategory{
+  display: inherit;
   justify-content: space-around;
   flex-wrap: wrap;
   width: 100vw;
@@ -28,6 +36,16 @@
   align-items: center;
   height: 340px;
   width: 175px;
+}
+
+
+.movieContainer{
+  display: inherit;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 90vw;
+  height: 500px;
+  font-family: 'Barlow Condensed';
 }
 
 
@@ -89,4 +107,21 @@
   color: black;
   font-family: 'Barlow Condensed';
   font-size: 30px;
+}
+
+
+.btnContent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 460px;
+  width: 250px;
+}
+
+.smBtnContent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 250px;
 }

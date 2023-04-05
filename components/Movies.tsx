@@ -11,6 +11,7 @@ import { addMoviesToStore } from '@/reducers/bragi';
 import Link from 'next/link';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
+import dispMoviesPerCat from '@/modules/dispMoviesPerCat';
 
 export default function Movies() {
   const matches = useMediaQuery('(min-width:904px)');
@@ -30,27 +31,67 @@ export default function Movies() {
   },[])
 
 
-  let articles:any[] = articlesList.map((el: any,i: number) => {
-    let title = '';
-    if(el.mediaType === "movie"){
+  // let articles:any[] = articlesList.map((el: any,i: number) => {
+  //   let title = '';
+  //   if(el.mediaType === "movie"){
 
-      let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
-      return (
-      <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
-        {matches?
-        <div className={styles.container}>
-          <div className={styles.content}>
-              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>       
+  //     return (
+  //     <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
+  //       {matches?
+  //       <div className={styles.container}>
+  //         <div className={styles.content}>
+  //             <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>       
+  //         </div>
+  //       </div>:
+  //       <div className={styles.smContainer}>
+  //         <div className={styles.smContent}>
+  //             <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.smBackgroundImg}></div>       
+  //         </div>
+  //       </div>}
+  //     </Link>)
+  //   }
+  // });
+
+
+
+  const categories = ['comedy', 'horror', 'drama', 'action', 'scifi', 'animation'];
+
+  const dispMovies = categories.map((el, i) => {
+    console.log(dispMoviesPerCat(el, articlesList, matches).length);
+      if(matches){
+        return(
+          <div key={i} className={styles.movieContainer}>
+            <h1 className={styles.title}>{el[0].toUpperCase() + el.slice(1)} movies:</h1>
+            {dispMoviesPerCat(el, articlesList, matches).length !== 0?
+            <div style={{display: 'flex', overflowX: 'scroll', height: 850}}>
+              {dispMoviesPerCat(el, articlesList, matches)}
+              <div className={styles.btnContent}>
+                <Link href={{pathname:`/movies/category/[category]`, query: {id: el}}} as={`/movies/category/${el}`}>
+                  <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 200, height: 70, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more {el} movies</button>
+                </Link>
+              </div>
+            </div>:
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center',height:850, fontSize:30}}>❌ No movies for this category...</div>}
           </div>
-        </div>:
-        <div className={styles.smContainer}>
-          <div className={styles.smContent}>
-              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.smBackgroundImg}></div>       
-          </div>
-        </div>}
-      </Link>)
-    }
-  });
+        )
+      } else {
+        return (
+          <div key={i} className={styles.movieContainer}>
+            <h1>{el[0].toUpperCase() + el.slice(1)} movies:</h1>
+            {dispMoviesPerCat(el, articlesList, matches).length === 0?
+            <div style={{display: 'flex', overflowX: 'scroll', height: 450}}>
+              {dispMoviesPerCat(el, articlesList, matches)}
+              <div className={styles.smBtnContent}>
+                <Link href={{pathname:`/movies/category/[category]`, query: {id: el}}} as={`/movies/category/${el}`}>
+                  <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 180, height: 60, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more {el} movies</button>
+                </Link>
+              </div>
+            </div>:
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center',height:450, fontSize:30}}>No movies for this category</div>}
+          </div>)
+      }
+    
+  })
 
 
   return (
@@ -66,7 +107,7 @@ export default function Movies() {
       
       <main className={styles.main}>
         <div className={styles.body}>
-          {articles}
+          {dispMovies}
         </div>
       </main>
 

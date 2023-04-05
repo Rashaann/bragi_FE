@@ -156,18 +156,6 @@ export default function Home() {
           <div style={{display:'flex', overflowX: 'scroll'}}>{displayLogo}</div>
         </div>
       </main>
-
-      {/* <video
-        id="my-video"
-        controls
-        preload="auto"
-        width="640"
-        height="264"
-        data-setup="{}"
-      >
-        <source src="https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308709&output=16"/>
-
-      </video> */}
       
       <Footer />
     </>

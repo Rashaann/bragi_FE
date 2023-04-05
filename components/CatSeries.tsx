@@ -70,7 +70,7 @@ export default function Categories() {
       
       <main className={styles.main}>
         <p className={styles.title}>Series for category: {router.query.category}</p>
-        <div className={styles.body}>
+        <div className={styles.bodyCategory}>
           {articles}
         </div>
       </main>
