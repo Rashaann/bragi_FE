@@ -54,7 +54,7 @@ export default function Movies() {
         return (
           <div key={i} className={styles.movieContainer}>
             <h1>{el[0].toUpperCase() + el.slice(1)} movies:</h1>
-            {dispMoviesPerCat(el, articlesList, matches).length === 0?
+            {dispMoviesPerCat(el, articlesList, matches).length !== 0?
             <div style={{display: 'flex', overflowX: 'scroll', height: 450}}>
               {dispMoviesPerCat(el, articlesList, matches)}
               <div className={styles.smBtnContent}>
