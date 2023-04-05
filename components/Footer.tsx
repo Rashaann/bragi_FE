@@ -133,11 +133,27 @@ export default function Footer() {
               <Typography sx={{ width: '33%', flexShrink: 0, fontFamily: 'Barlow Condensed', fontSize: 25 }}>Series</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <p>Recently added</p>
-              <p>Comedy</p>
-              <p>Horror</p>
-              <p>Drama</p>
-              <p>Action</p>
+              <Link href={{pathname:`/series/category/[category]`, query: {id: 'recent'}}} as={'/series/category/recent'}>
+                <p>Recently added</p>
+              </Link>
+              <Link href={{pathname:`/series/category/[category]`, query: {id: 'comedy'}}} as={'/series/category/comedy'}>
+                <p>Comedy</p>
+              </Link>
+              <Link href={{pathname:`/series/category/[category]`, query: {id: 'horror'}}} as={'/series/category/horror'}>
+                <p>Horror</p>
+              </Link>
+              <Link href={{pathname:`/series/category/[category]`, query: {id: 'drama'}}} as={'/series/category/drama'}>
+                <p>Drama</p>
+              </Link>
+              <Link href={{pathname:`/series/category/[category]`, query: {id: 'action'}}} as={'/series/category/action'}>
+                <p>Action</p>
+              </Link>
+              <Link href={{pathname:`/series/category/[category]`, query: {id: 'scifi'}}} as={'/series/category/scifi'}>
+                <p>Scifi</p>
+              </Link>
+              <Link href={{pathname:`/series/category/[category]`, query: {id: 'animation'}}} as={'/series/category/animation'}>
+                <p>Animation</p>
+              </Link>
             </AccordionDetails>
           </Accordion>
           <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')} style={{backgroundColor: 'black', color: 'red'}}>
