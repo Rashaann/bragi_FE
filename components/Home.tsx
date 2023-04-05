@@ -81,6 +81,7 @@ export default function Home() {
 
   let series:any[] = seriesList.map((el: any,i: number) => {
     let title = '';
+    console.log
     if(el.mediaType === "serie" && i<=8){
 
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
@@ -99,11 +100,19 @@ export default function Home() {
         </div>}
       </Link>)
     } else if(i === seriesList.length-1){
-      return (<div style={{display: 'flex', justifyContent:'center', alignItems:'center', height: 460, width: 250}}>
-        <Link href={{pathname:`/series`}}>
-          <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 200, height: 70, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more series</button>
-        </Link>
-      </div>)
+      if(matches){
+        return (<div className={styles.btnContent}>
+          <Link href={{pathname:`/series`}}>
+            <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 200, height: 70, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more series</button>
+          </Link>
+        </div>)
+      } else {
+        return (<div className={styles.smBtnContent}>
+          <Link href={{pathname:`/series`}}>
+            <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 180, height: 60, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more series</button>
+          </Link>
+        </div>)
+      }
     }
   });
 
