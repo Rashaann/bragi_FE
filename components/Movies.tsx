@@ -28,31 +28,7 @@ export default function Movies() {
       dispatch(addMoviesToStore(data.list));
       setArticlesList(data.list);
     });
-  },[])
-
-
-  // let articles:any[] = articlesList.map((el: any,i: number) => {
-  //   let title = '';
-  //   if(el.mediaType === "movie"){
-
-  //     return (
-  //     <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
-  //       {matches?
-  //       <div className={styles.container}>
-  //         <div className={styles.content}>
-  //             <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>       
-  //         </div>
-  //       </div>:
-  //       <div className={styles.smContainer}>
-  //         <div className={styles.smContent}>
-  //             <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.smBackgroundImg}></div>       
-  //         </div>
-  //       </div>}
-  //     </Link>)
-  //   }
-  // });
-
-
+  },[]);
 
   const categories = ['comedy', 'horror', 'drama', 'action', 'scifi', 'animation'];
 

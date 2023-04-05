@@ -49,7 +49,6 @@ export default function Episode() {
         fetch("https://bragi-be.vercel.app/series/all")
         .then(response => response.json())
         .then(data => {
-            //console.log('test => ', router.query)
           data.list.map((el:{id:string, links:object, frenchTitle:string}) => {
             if(el.id === router.query.series){
                 setArticlesList(el);
@@ -60,15 +59,6 @@ export default function Episode() {
                 setSeasons(`S${router.query.seasons}`);
                 setEpisodes(router.query.episodes);
                 
-                //console.log('zidndznkdz => ', articlesList)
-                // fetch('https://bragi-be.vercel.app/movies/movieUrl/25021072094')
-                // .then(response => response.json())
-                // .then(dat => {
-                //     console.log(dat)
-                // })
-                
-                
-                
                 console.log("selectedSeason => ", selectedSeason);
             }
         });
@@ -77,12 +67,6 @@ export default function Episode() {
     },[router.query]);
     
 
-    // console.log('dzbdbzjdzjdzjbd => ', router.query)
-    // console.log('xrctvgbhgcf => ', articlesList.links[`S${router.query.season}`]);
-    // console.log('savghbsaubjsa => ', router.query.episodeUrl);
-    //console.log('fzudzbjdzjbd => ', articlesList.links[seasons]);
-    // console.log('season => ', seasons);[Number(episodes)]
-    //console.log('episode => ', episodes);
     const [anchorElSeason, setAnchorElSeason] = React.useState<null | HTMLElement>(null);
     const openSeason = Boolean(anchorElSeason);
 
