@@ -167,10 +167,10 @@ export default function Episode() {
                             <button className={styles.prevNextBtns} disabled={Number(router.query.episodes)-1===articlesList.links[`S${router.query.seasons}`].length}>Previous</button>
                         </Link>}
 
-                        {Number(router.query.episodes)+1===articlesList.links[`S${router.query.seasons}`].length?
-                        <button className={styles.notAllowedBtns} disabled={Number(router.query.episodes)+1===articlesList.links[`S${router.query.seasons}`].length}>Next</button>:
+                        {Number(router.query.episodes)===articlesList.links[`S${router.query.seasons}`].length?
+                        <button className={styles.notAllowedBtns} disabled={Number(router.query.episodes)===articlesList.links[`S${router.query.seasons}`].length}>Next</button>:
                         <Link href={{pathname:'/[series]/[seasons]/[episodes]/episode', query: {id: articlesList.id, season: router.query.seasons, episode: Number(router.query.episodes)+1}}} as={`/${articlesList.id}/${router.query.seasons}/${Number(router.query.episodes)+1}/episode`}>
-                            <button className={styles.prevNextBtns} disabled={Number(router.query.episodes)+1===articlesList.links[`S${router.query.seasons}`].length}>Next</button>
+                            <button className={styles.prevNextBtns} disabled={Number(router.query.episodes)===articlesList.links[`S${router.query.seasons}`].length}>Next</button>
                         </Link>}                        
                     </div>
                     <div className={styles.icons}>
