@@ -37,7 +37,7 @@ export default function Movie() {
     const [matchedMovies, setMatchedMovies] = useState<any>([]);
     const [movieCategory, setMovieCategory] = useState<string>('');
 
-    const [availablePlayers, setAvailablePlayers] = useState<string[]>([]);
+    const [availablePlayers, setAvailablePlayers] = useState<string>('');
 
 
     useEffect(() => {
@@ -51,19 +51,17 @@ export default function Movie() {
                 setMovieCategory(el.category);
                 setIsDataLoaded(true);
                 // console.log(el.link.vostfr);
-                // console.log(JSON.stringify(el.link.vf) !== JSON.stringify([]));
-                // console.log(JSON.stringify(el.link.vostfr) !== JSON.stringify([]));
-                // console.log(JSON.stringify(el.link.vo) !== JSON.stringify([]));
+                console.log(JSON.stringify(el.link.vf) !== JSON.stringify([]));
+                console.log(JSON.stringify(el.link.vostfr) !== JSON.stringify([]));
+                console.log(JSON.stringify(el.link.vo) !== JSON.stringify([]));
 
                 {JSON.stringify(el.link.vf) !== JSON.stringify([])?
-                setAvailablePlayers([...availablePlayers, 'vf']):
-                setAvailablePlayers(availablePlayers)}
-                {JSON.stringify(el.link.vostfr) !== JSON.stringify([])?
-                setAvailablePlayers([...availablePlayers,'vostfr']):
-                setAvailablePlayers(availablePlayers)}
-                {JSON.stringify(el.link.vo) !== JSON.stringify([])?
-                setAvailablePlayers([...availablePlayers, 'vo']):
-                setAvailablePlayers(availablePlayers)}
+                setAvailablePlayers('vf'):
+                JSON.stringify(el.link.vostfr) !== JSON.stringify([])?
+                setAvailablePlayers('vostfr'):
+                JSON.stringify(el.link.vo) !== JSON.stringify([])?
+                setAvailablePlayers('vo'):
+                setAvailablePlayers('')}
             }
         })
         })
@@ -89,6 +87,7 @@ export default function Movie() {
     let otherMovies:any;
     {isDataLoaded?
     otherMovies = matchedMovies.sort(function(){return 0.5 - Math.random()}).map((el:any,i:React.Key) => {
+        console.log(availablePlayers)
         if(el.id !== router.query.movie && i<4){
             return(<Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
             {matches?
@@ -134,7 +133,7 @@ export default function Movie() {
                         <p>Ratings: {articlesList.note} ({articlesList.nbVoters})</p>
                         <p>Released on: {articlesList.releaseDate}</p>
 
-                        <p>Available languages players <span style={{fontWeight:'bolder'}}>{availablePlayers.join()}</span></p>
+                        <p>Available languages players: <span style={{fontWeight:'bolder'}}>{availablePlayers}</span></p>
                     </div>
                 </div>
                 
@@ -178,7 +177,7 @@ export default function Movie() {
                         <p><span style={{fontWeight: 'bolder'}}>Ratings:</span> {articlesList.note} ({articlesList.nbVoters})</p>
                         <p><span style={{fontWeight: 'bolder'}}>Released on:</span> {articlesList.releaseDate}</p>
 
-                        <p>Available languages players <span style={{fontWeight:'bolder'}}>{availablePlayers.join()}</span></p>
+                        <p>Available languages players: <span style={{fontWeight:'bolder'}}>{availablePlayers}</span></p>
                     </div>
                 </div>
                 

@@ -51,7 +51,7 @@ export default function Episode() {
         fetch("https://bragi-be.vercel.app/series/all")
         .then(response => response.json())
         .then(data => {
-          data.list.map((el:{id:string, links:object, frenchTitle:string}) => {
+          data.list.map((el:{id:string, links:any, frenchTitle:string}) => {
             if(el.id === router.query.series){
                 setArticlesList(el);
                 setSerie(el.links);
@@ -62,17 +62,17 @@ export default function Episode() {
                 setEpisodes(router.query.episodes);
                 
                 // console.log("selectedSeason => ", selectedSeason);
+                {el.links[0][`S${router.query.seasons}`][Number(router.query.episodes)-1].vf !== ''?
+                setAvailablePlayers(availablePlayers + 'vf'):
+                setAvailablePlayers(availablePlayers)}
+                {el.links[0][`S${router.query.seasons}`][Number(router.query.episodes)-1].vostfr !== ''?
+                setAvailablePlayers(availablePlayers + 'vostfr'):
+                setAvailablePlayers(availablePlayers)}
+                {el.links[0][`S${router.query.seasons}`][Number(router.query.episodes)-1].vo !== ''?
+                setAvailablePlayers(availablePlayers + 'vo'):
+                setAvailablePlayers(availablePlayers)}
             }
         });
-        {articlesList.links[0][seasons][Number(episodes)-1].vf !== ''?
-        setAvailablePlayers(availablePlayers + 'vf'):
-        setAvailablePlayers(availablePlayers)}
-        {articlesList.links[0][seasons][Number(episodes)-1].vostfr !== ''?
-        setAvailablePlayers(availablePlayers + 'vostfr'):
-        setAvailablePlayers(availablePlayers)}
-        {articlesList.links[0][seasons][Number(episodes)-1].vo !== ''?
-        setAvailablePlayers(availablePlayers + 'vo'):
-        setAvailablePlayers(availablePlayers)}
     });
 
     },[router.query]);
