@@ -42,6 +42,8 @@ export default function Episode() {
     const [selectedEpisode, setSelectedEpisode] = useState<string>('');
     const [displaySeasons, setDisplaySeasons] = useState<any>(null);
     const [displayEpisodes, setDisplayEpisodes] = useState<any>(null);
+
+    const [availablePlayers, setAvailablePlayers] = useState<string>('');
     
 
     useEffect(() => {
@@ -62,6 +64,15 @@ export default function Episode() {
                 // console.log("selectedSeason => ", selectedSeason);
             }
         });
+        {articlesList.links[0][seasons][Number(episodes)-1].vf !== ''?
+        setAvailablePlayers(availablePlayers + 'vf'):
+        setAvailablePlayers(availablePlayers)}
+        {articlesList.links[0][seasons][Number(episodes)-1].vostfr !== ''?
+        setAvailablePlayers(availablePlayers + 'vostfr'):
+        setAvailablePlayers(availablePlayers)}
+        {articlesList.links[0][seasons][Number(episodes)-1].vo !== ''?
+        setAvailablePlayers(availablePlayers + 'vo'):
+        setAvailablePlayers(availablePlayers)}
     });
 
     },[router.query]);
@@ -115,8 +126,8 @@ export default function Episode() {
     let dispEpisodes:any= [];
     // const [showBtn, setShowBtn] = useState<boolean>(false);
     if(JSON.stringify(articlesList) !== JSON.stringify({})){
-        let seasons = Object.keys(articlesList.links[0]).filter(e => e[0] === 'S');
-        seasons.map((e,i: React.Key) => {
+        let seasonsList = Object.keys(articlesList.links[0]).filter(e => e[0] === 'S');
+        seasonsList.map((e,i: React.Key) => {
             if(e!== '__v'){
                 dispSeasons.push(<MenuItem key={i} onClick={() => selectSeason(Number(i))}>Season {Number(i)+1}</MenuItem>);
             }
@@ -131,6 +142,7 @@ export default function Episode() {
         // console.log(selectedEpisode)
     }
     
+
 
 
 
@@ -158,6 +170,8 @@ export default function Episode() {
                         <p>Overview: {articlesList.overview}</p>
                         <p>Ratings: {articlesList.note} ({articlesList.nbVoters})</p>
                         <p>Released on: {articlesList.releaseDate}</p>
+                        
+                        <p>Available language players : <span style={{fontWeight:'bolder'}}> {availablePlayers}</span></p>
                     </div>
                 </div>
                 <div className={styles.stream}>
@@ -267,6 +281,8 @@ export default function Episode() {
                         <p>Overview: {articlesList.overview}</p>
                         <p>Ratings: {articlesList.note} ({articlesList.nbVoters})</p>
                         <p>Released on: {articlesList.releaseDate}</p>
+
+                        <p>Available language players : <span style={{fontWeight:'bolder'}}> {availablePlayers}</span></p>
                     </div>
                 </div>
                 <div className={styles.smStream}>

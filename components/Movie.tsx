@@ -37,17 +37,33 @@ export default function Movie() {
     const [matchedMovies, setMatchedMovies] = useState<any>([]);
     const [movieCategory, setMovieCategory] = useState<string>('');
 
+    const [availablePlayers, setAvailablePlayers] = useState<string[]>([]);
+
 
     useEffect(() => {
         fetch("https://bragi-be.vercel.app/movies/all")
         .then(response => response.json())
         .then(data => {
             // console.log('test => ', router.query)
-          data.list.map((el:{id:string, category:string}) => {
+          data.list.map((el:{id:string, category:string, link:{vf:string, vostfr:string, vo:string}}) => {
             if(el.id === router.query.movie){
                 setArticlesList(el);
                 setMovieCategory(el.category);
                 setIsDataLoaded(true);
+                // console.log(el.link.vostfr);
+                // console.log(JSON.stringify(el.link.vf) !== JSON.stringify([]));
+                // console.log(JSON.stringify(el.link.vostfr) !== JSON.stringify([]));
+                // console.log(JSON.stringify(el.link.vo) !== JSON.stringify([]));
+
+                {JSON.stringify(el.link.vf) !== JSON.stringify([])?
+                setAvailablePlayers([...availablePlayers, 'vf']):
+                setAvailablePlayers(availablePlayers)}
+                {JSON.stringify(el.link.vostfr) !== JSON.stringify([])?
+                setAvailablePlayers([...availablePlayers,'vostfr']):
+                setAvailablePlayers(availablePlayers)}
+                {JSON.stringify(el.link.vo) !== JSON.stringify([])?
+                setAvailablePlayers([...availablePlayers, 'vo']):
+                setAvailablePlayers(availablePlayers)}
             }
         })
         })
@@ -64,6 +80,8 @@ export default function Movie() {
             });
             setMatchedMovies(matchingMovies);
         });
+
+        
     
     },[router.query.movie, movieCategory]);
 
@@ -115,6 +133,8 @@ export default function Movie() {
                         <p>Overview: {articlesList.overview}</p>
                         <p>Ratings: {articlesList.note} ({articlesList.nbVoters})</p>
                         <p>Released on: {articlesList.releaseDate}</p>
+
+                        <p>Available languages players <span style={{fontWeight:'bolder'}}>{availablePlayers.join()}</span></p>
                     </div>
                 </div>
                 
@@ -157,6 +177,8 @@ export default function Movie() {
                         <p><span style={{fontWeight: 'bolder'}}>Overview:</span> {articlesList.overview}</p>
                         <p><span style={{fontWeight: 'bolder'}}>Ratings:</span> {articlesList.note} ({articlesList.nbVoters})</p>
                         <p><span style={{fontWeight: 'bolder'}}>Released on:</span> {articlesList.releaseDate}</p>
+
+                        <p>Available languages players <span style={{fontWeight:'bolder'}}>{availablePlayers.join()}</span></p>
                     </div>
                 </div>
                 
