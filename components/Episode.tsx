@@ -293,7 +293,7 @@ export default function Episode() {
                             <button className={styles.smPrevNextBtns} disabled={Number(router.query.episodes)-1===articlesList.links[0][`S${router.query.seasons}`].length}>Previous</button>
                         </Link>}
 
-                        {Number(router.query.episodes)===articlesList.links[`S${router.query.seasons}`].length?
+                        {Number(router.query.episodes)===articlesList.links[0][`S${router.query.seasons}`].length?
                         <button className={styles.smNotAllowedBtns} disabled={Number(router.query.episodes)===articlesList.links[0][`S${router.query.seasons}`].length}>Next</button>:
                         <Link href={{pathname:'/[series]/[seasons]/[episodes]/episode', query: {id: articlesList.id, season: router.query.seasons, episode: Number(router.query.episodes)+1}}} as={`/${articlesList.id}/${router.query.seasons}/${Number(router.query.episodes)+1}/episode`}>
                             <button className={styles.smPrevNextBtns} disabled={Number(router.query.episodes)===articlesList.links[0][`S${router.query.seasons}`].length}>Next</button>
