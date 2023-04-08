@@ -40,9 +40,9 @@ export default function Season() {
                 setArticlesList(el);
                 setSerie(el.links);
                 setIsLoaded(true);
-                //console.log('bjncrd => ', el.links['S1'])
+                // console.log('bjncrd => ', el.links[0]['S1'])
 
-                setEpisodes(Object.keys(el.links[`S${String(router.query.seasons)}`]).map((e, j) => {
+                setEpisodes(Object.keys(el.links[0][`S${String(router.query.seasons)}`]).map((e, j) => {
                     //console.log('episode => ', String(Number(j) + 1))
                     let episode = 'episode ' + String(Number(j) + 1);
                     let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;

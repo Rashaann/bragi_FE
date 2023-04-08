@@ -39,21 +39,26 @@ export default function Serie() {
                 setArticlesList(el);
                 setSerie(el.links);
                 setIsLoaded(true);
-                // console.log('bjncrd => ', el.links['S1'])
+                // console.log('bjncrd => ', el.links[0]);
 
-                setEpisodes(Object.keys(el.links[`S${String(1)}`]).map((e, j) => {
-                    console.log('episode => ', String(Number(j) + 1))
+                setEpisodes(Object.keys(el.links[0][`S${String(1)}`]).map((e, j) => {
+                    // console.log('episode => ', String(Number(j) + 1))
                     let episode = 'episode ' + String(Number(j) + 1);
                     return (<div key={j}>
                         {episode}
                     </div>)
                 }));
 
-                setSeasons(Object.keys(el.links).map((e, i) => {
+
+                //Init of seasons variable to filter elements that are not seasons (i.e. __v, vf, vostfr & vo);
+                let seasons = Object.keys(el.links[0]).filter(e => e[0] === 'S');
+
+                setSeasons(seasons.map((e, i) => {
                     let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
                     let season = 'season ' + String(Number(i)+1);
                     console.log(String(Number(i)+1));
-                    if(e !== "__v"){
+                    // console.log('season => ', JSON.stringify(e[0])===JSON.stringify('S'));
+                    if(JSON.stringify(e[0])===JSON.stringify('S')){
                         return (<Link key={i} href={{pathname:'/[series]/[seasons]/season', query: {id: el.id, url: url, season: String(Number(i)+1), seasonUrl: `season${String(Number(i)+1)}`}}} as={`/${el.id}/${String(Number(i)+1)}/season`}>
                             {matches?
                             <div className={styles.seasonContainer}>

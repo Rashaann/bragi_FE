@@ -59,7 +59,7 @@ export default function Episode() {
                 setSeasons(`S${router.query.seasons}`);
                 setEpisodes(router.query.episodes);
                 
-                console.log("selectedSeason => ", selectedSeason);
+                // console.log("selectedSeason => ", selectedSeason);
             }
         });
     });
@@ -115,19 +115,20 @@ export default function Episode() {
     let dispEpisodes:any= [];
     // const [showBtn, setShowBtn] = useState<boolean>(false);
     if(JSON.stringify(articlesList) !== JSON.stringify({})){
-        Object.keys(articlesList.links).map((e,i: React.Key) => {
+        let seasons = Object.keys(articlesList.links[0]).filter(e => e[0] === 'S');
+        seasons.map((e,i: React.Key) => {
             if(e!== '__v'){
                 dispSeasons.push(<MenuItem key={i} onClick={() => selectSeason(Number(i))}>Season {Number(i)+1}</MenuItem>);
             }
         })
         
         if(JSON.stringify(displaySeasons) !== JSON.stringify([])){
-            articlesList?.links[selectedSeason]?.map((e: any,i: React.Key) => {
+            articlesList?.links[0][selectedSeason]?.map((e: any,i: React.Key) => {
                 dispEpisodes.push(<MenuItem key={i} onClick={() => selectEpisode(Number(i))}>Episode {Number(i)+1}</MenuItem>);
             });
             // setShowBtn(true);
         }
-        console.log(selectedEpisode)
+        // console.log(selectedEpisode)
     }
     
 
@@ -164,19 +165,19 @@ export default function Episode() {
                         {Number(router.query.episodes)===1?
                         <button className={styles.notAllowedBtns} disabled={Number(router.query.episodes)===1}>Previous</button>:
                         <Link href={{pathname:'/[series]/[seasons]/[episodes]/episode', query: {id: articlesList.id, season: router.query.seasons, episode: Number(router.query.episodes)-1}}} as={`/${articlesList.id}/${router.query.seasons}/${Number(router.query.episodes)-1}/episode`}>
-                            <button className={styles.prevNextBtns} disabled={Number(router.query.episodes)-1===articlesList.links[`S${router.query.seasons}`].length}>Previous</button>
+                            <button className={styles.prevNextBtns} disabled={Number(router.query.episodes)-1===articlesList.links[0][`S${router.query.seasons}`].length}>Previous</button>
                         </Link>}
 
-                        {Number(router.query.episodes)===articlesList.links[`S${router.query.seasons}`].length?
-                        <button className={styles.notAllowedBtns} disabled={Number(router.query.episodes)===articlesList.links[`S${router.query.seasons}`].length}>Next</button>:
+                        {Number(router.query.episodes)===articlesList.links[0][`S${router.query.seasons}`].length?
+                        <button className={styles.notAllowedBtns} disabled={Number(router.query.episodes)===articlesList.links[0][`S${router.query.seasons}`].length}>Next</button>:
                         <Link href={{pathname:'/[series]/[seasons]/[episodes]/episode', query: {id: articlesList.id, season: router.query.seasons, episode: Number(router.query.episodes)+1}}} as={`/${articlesList.id}/${router.query.seasons}/${Number(router.query.episodes)+1}/episode`}>
-                            <button className={styles.prevNextBtns} disabled={Number(router.query.episodes)===articlesList.links[`S${router.query.seasons}`].length}>Next</button>
+                            <button className={styles.prevNextBtns} disabled={Number(router.query.episodes)===articlesList.links[0][`S${router.query.seasons}`].length}>Next</button>
                         </Link>}                        
                     </div>
                     <div className={styles.icons}>
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.languageIcon} onClick={() => setLink(articlesList.links[seasons][Number(episodes)-1].vf)} />
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.languageIcon} onClick={() => setLink(articlesList.links[seasons][Number(episodes)-1].vostfr)} />
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/english_flag_mlp7wy.png" className={styles.languageIcon} onClick={() => setLink(articlesList.links[seasons][Number(episodes)-1].vo)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.languageIcon} onClick={() => setLink(articlesList.links[0][seasons][Number(episodes)-1].vf)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.languageIcon} onClick={() => setLink(articlesList.links[0][seasons][Number(episodes)-1].vostfr)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/english_flag_mlp7wy.png" className={styles.languageIcon} onClick={() => setLink(articlesList.links[0][seasons][Number(episodes)-1].vo)} />
                     </div>
                     {(link==='')||(link===undefined)?
                     <div className={styles.chooseLink}>Please choose the version to display</div>:
@@ -273,19 +274,19 @@ export default function Episode() {
                     {Number(router.query.episodes)===1?
                         <button className={styles.smNotAllowedBtns} disabled={Number(router.query.episodes)===1}>Previous</button>:
                         <Link href={{pathname:'/[series]/[seasons]/[episodes]/episode', query: {id: articlesList.id, season: router.query.seasons, episode: Number(router.query.episodes)-1}}} as={`/${articlesList.id}/${router.query.seasons}/${Number(router.query.episodes)-1}/episode`}>
-                            <button className={styles.smPrevNextBtns} disabled={Number(router.query.episodes)-1===articlesList.links[`S${router.query.seasons}`].length}>Previous</button>
+                            <button className={styles.smPrevNextBtns} disabled={Number(router.query.episodes)-1===articlesList.links[0][`S${router.query.seasons}`].length}>Previous</button>
                         </Link>}
 
                         {Number(router.query.episodes)===articlesList.links[`S${router.query.seasons}`].length?
-                        <button className={styles.smNotAllowedBtns} disabled={Number(router.query.episodes)===articlesList.links[`S${router.query.seasons}`].length}>Next</button>:
+                        <button className={styles.smNotAllowedBtns} disabled={Number(router.query.episodes)===articlesList.links[0][`S${router.query.seasons}`].length}>Next</button>:
                         <Link href={{pathname:'/[series]/[seasons]/[episodes]/episode', query: {id: articlesList.id, season: router.query.seasons, episode: Number(router.query.episodes)+1}}} as={`/${articlesList.id}/${router.query.seasons}/${Number(router.query.episodes)+1}/episode`}>
-                            <button className={styles.smPrevNextBtns} disabled={Number(router.query.episodes)===articlesList.links[`S${router.query.seasons}`].length}>Next</button>
+                            <button className={styles.smPrevNextBtns} disabled={Number(router.query.episodes)===articlesList.links[0][`S${router.query.seasons}`].length}>Next</button>
                         </Link>}
                     </div>
                     <div className={styles.smIcons}>
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.smLanguageIcon} onClick={() => setLink(articlesList.links[seasons][Number(episodes)-1].vf)} />
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.smLanguageIcon} onClick={() => setLink(articlesList.links[seasons][Number(episodes)-1].vostfr)} />
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/english_flag_mlp7wy.png" className={styles.smLanguageIcon} onClick={() => setLink(articlesList.links[seasons][Number(episodes)-1].vo)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.smLanguageIcon} onClick={() => setLink(articlesList.links[0][seasons][Number(episodes)-1].vf)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.smLanguageIcon} onClick={() => setLink(articlesList.links[0][seasons][Number(episodes)-1].vostfr)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/english_flag_mlp7wy.png" className={styles.smLanguageIcon} onClick={() => setLink(articlesList.links[0][seasons][Number(episodes)-1].vo)} />
                     </div>
                     {(link==='')||(link===undefined)?
                     <div className={styles.smChooseLink}>Please choose the version to display</div>:

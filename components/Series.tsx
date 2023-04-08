@@ -66,7 +66,7 @@ export default function Series() {
       <Header />
       
       <main className={styles.main}>
-        <div className={styles.body}>
+        <div className={styles.bodyCategory}>
           {articles}
         </div>
       </main>
