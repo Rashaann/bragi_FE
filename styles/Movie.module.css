@@ -188,7 +188,7 @@
     align-items: center;
     flex-wrap: wrap;
     width: 60vw;
-    height: 60vh;
+    min-height: 60vh;
 }
 
 .episodeContainer{
