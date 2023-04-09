@@ -37,6 +37,8 @@ export default function Search() {
 
     let seriesResults = dispTvShowsResultsPerCat(searchText, tvShowsList, matches);
 
+    
+
   return (
     <>
         <Head>
@@ -50,12 +52,28 @@ export default function Search() {
         <Header />
 
         <main className={styles.main}>
-            <div>Results for: {searchText}</div>
-            <div>Movies</div>
-            <div>{moviesResults}</div>
-            <div>Tv shows</div>
-            <div>{seriesResults}</div>
-            <div>TV channels</div>
+            <div className={styles.title}>Results for: {searchText}</div>
+            <div className={styles.container}>
+                <h1>Movies</h1>
+                {moviesResults.length===0?
+                <p style={{fontSize:25}}> ❌ No movies corresponding to the following search: "<span style={{fontWeight:'bolder'}}>{searchText}</span>" ❌</p>:
+                <div style={{display: 'flex', overflowX: 'scroll', height: '500px',}}>
+                    {moviesResults}
+                </div>}
+            </div>
+            
+            <div className={styles.container}>
+                <h1>TV shows</h1>
+                {seriesResults.length===0?
+                <p style={{fontSize:25}}> ❌ No TV shows corresponding to the following search: "<span style={{fontWeight:'bolder'}}>{searchText}</span>" ❌</p>:
+                <div style={{display: 'flex', overflowX: 'scroll', height: '500px',}}>
+                    {seriesResults}
+                </div>}
+            </div>
+
+            <div className={styles.container}>
+                <h1>TV channels</h1>
+            </div>
         </main>
 
 

@@ -35,7 +35,7 @@ export function dispTvShowsResultsPerCat(searchKey:string, articlesList: object[
 
         if((regex.test(el.originalTitle))||(regex.test(el.frenchTitle))||(regex.test(el.overview))){
           return (
-          <Link key={i} href={{pathname:`/[serie]/serie`, query: {id: el.id}}} as={`/${el.id}/serie`} passHref>
+          <Link key={i} href={{pathname:`/[series]/serie`, query: {id: el.id}}} as={`/${el.id}/serie`} passHref>
             {matches?
             <div key={i} className={styles.container}>
               <div className={styles.content}>
