@@ -5,6 +5,7 @@ const initialState = {
         user: {},
         movies: [],
         series: [],
+        search: '',
     }
 };
 
@@ -20,9 +21,12 @@ export const bragiSlice = createSlice({
         },
         addSeriesToStore: (state, action) => {
             state.value.series = action.payload;
-        }
+        },
+        searchText: (state, action) => {
+            state.value.search = action.payload;
+        },
     }
 });
 
-export const { addUserToStore, addMoviesToStore, addSeriesToStore } = bragiSlice.actions;
+export const { addUserToStore, addMoviesToStore, addSeriesToStore, searchText } = bragiSlice.actions;
 export default bragiSlice.reducer;

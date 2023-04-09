@@ -8,7 +8,6 @@ export default function dispMoviesPerCat(category:string, articlesList: object[]
     let articles:any[] = articlesList.map((el: any, i: number) => {
 
         if(category === el.category){
-          let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
           return (
           <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
             {matches?

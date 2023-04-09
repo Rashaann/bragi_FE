@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 import styles from '../styles/Header.module.css';
@@ -19,8 +19,16 @@ import LiveTvIcon from '@mui/icons-material/LiveTv';
 
 import SearchIcon from '@mui/icons-material/Search';
 
+import Router from 'next/router';
+import { useDispatch } from 'react-redux';
+import { searchText } from '@/reducers/bragi';
+
 export default function Header() {
   const matches = useMediaQuery('(min-width:904px)');
+
+  const dispatch = useDispatch();
+
+  const [search, setSearch] = useState<string>('');
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -31,6 +39,17 @@ export default function Header() {
     setAnchorEl(null);
   };
 
+
+  const handleKeyPress = (key:{code:string}) => {
+    if(key.code === 'Enter'){
+      dispatch(searchText(search));
+      setSearch('');
+      Router.push('/search');
+      console.log('ENTER KEY PRESSED => ', search);
+    }
+  }
+
+
   return (
     <div className={styles.body}>
         <Link href="/"><img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1678994822/bragi/bragi_red_puuuys.png" height={60} /></Link>
@@ -40,7 +59,12 @@ export default function Header() {
             <Link href="/movies" className={styles.link}>Movies</Link>
             <Link href="/series" className={styles.link}>Series</Link>
             <Link href="/tv" style={{textDecoration:'none'}}>TV</Link>
-            <input className={styles.input} />
+            <input
+              placeholder='Search'
+              className={styles.input}
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+              onKeyDown={(e) => handleKeyPress(e)}/>
         </div>:
         <div className={styles.smContainer}>
           <Tooltip title="Menu">
@@ -124,7 +148,12 @@ export default function Header() {
 
             <MenuItem>
               <SearchIcon />
-              <input placeholder='Search' className={styles.smInput} />
+              <input
+                placeholder='Search'
+                className={styles.smInput}
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+                onKeyDown={(e) => handleKeyPress(e)}/>
             </MenuItem>
 
           </Menu>
