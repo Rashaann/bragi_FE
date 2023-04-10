@@ -53,3 +53,29 @@ export function dispTvShowsResultsPerCat(searchKey:string, articlesList: object[
 
     return articles;
 }
+
+
+
+export function dispChannelsResultsPerCat(searchKey:string, articlesList: object[], matches:any){
+    let regex = new RegExp(searchKey, 'i');
+    
+    let articles:any[] = articlesList.map((el: any, i: number) => {
+
+        if((regex.test(el.title))||(regex.test(el.country))||(regex.test(el.language))||(regex.test(el.category))){
+          return (
+          <Link key={i} href={{pathname:`/tv`, query: {id: el.id}}} as={`/tv`} passHref>
+            {matches?
+            <div key={i} style={{ cursor: 'pointer', width: 150, height:150 }}>
+                <img src={el.image} width={100} height={100}/>
+                <p>{el.title}</p>
+            </div>:
+            <div key={i} style={{ cursor: 'pointer', width: 150, height:150 }}>
+                <img src={el.image} width={100} height={100}/>
+                <p>{el.title}</p>
+            </div>}
+          </Link>)
+        }
+    }).filter(notUndefined => notUndefined !== undefined);
+
+    return articles;
+}

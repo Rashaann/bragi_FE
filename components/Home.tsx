@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addMoviesToStore, addSeriesToStore } from '@/reducers/bragi';
+import { addMoviesToStore, addSeriesToStore, addChannelsToStore } from '@/reducers/bragi';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 
@@ -14,6 +14,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 export default function Home() {
   const [articlesList, setArticlesList]=useState<any>([]);
   const [seriesList, setSeriesList] = useState<object[]>([]);
+  const [tvChannels, setTvChannels] = useState<object[]>([]);
   const [showTitle, setShowTitle] = useState<boolean>(false);
 
   const matches = useMediaQuery('(min-width:904px)');
@@ -37,6 +38,15 @@ export default function Home() {
       dispatch(addSeriesToStore(data.list));
       setSeriesList(data.list);
       console.log('seriesList => ',seriesList);
+    });
+
+
+    fetch("https://bragi-be.vercel.app/tv/all")
+    .then(response => response.json())
+    .then(data => {
+      dispatch(addChannelsToStore(data.list));
+      setTvChannels(data.list);
+      console.log('tvChannels => ',tvChannels);
     });
   },[])
   
@@ -123,11 +133,11 @@ export default function Home() {
   const channelName:string[] = ["Maroc 2M", "Al Maghribia", "Al Aoula", "MBC", "MBC 4", "National Geographic Abu Dhabi", "Filmstream", "Rakuten Comedy Movies", "Rakuten Action Movies", "Rakuten Spotlight"];
 
 
-  const displayLogo = logos.map((el, i) => {
+  const displayLogo = tvChannels.map((el:any, i:number) => {
     return (<Link key={i} href="/tv">
         <div key={i} style={{ cursor: 'pointer', width: 150, height:150 }}>
-            <img src={el} width={100} height={100}/>
-            <p>{channelName[i]}</p>
+            <img src={el.image} width={100} height={100}/>
+            <p>{el.title}</p>
       </div>
     </Link>)
   })

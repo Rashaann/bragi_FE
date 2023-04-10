@@ -53,23 +53,6 @@ export default function TV() {
       <Header />
       
       <main className={styles.main}>
-        {/* <div className={styles.description}>
-          <h1>M6</h1>
-          <video
-            id="my-video"
-            controls
-            preload="auto"
-            width="640"
-            height="264"
-            data-setup="{}"
-            style={{display: 'flex', backgroundColor: 'black'}}
-          >
-            <source src="https://shls-m6-france-prod-dub.shahid.net/out/v1/c8a9f6e000cd4ebaa4d2fc7d18c15988/index.m3u8"  />
-
-          </video>
-        </div> */}
-
-
         <div className={styles.description}>
           <h1>All channels</h1>
           <div style={{display: 'flex', overflowX: 'scroll', width: '80vw', height: 250}}>

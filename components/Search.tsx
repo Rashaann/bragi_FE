@@ -7,7 +7,7 @@ import styles from '../styles/Search.module.css';
 import Head from 'next/head';
 import Header from './Header';
 import Footer from './Footer';
-import { dispMoviesResultsPerCat, dispTvShowsResultsPerCat } from '@/modules/dispResultsPerCat';
+import { dispChannelsResultsPerCat, dispMoviesResultsPerCat, dispTvShowsResultsPerCat } from '@/modules/dispResultsPerCat';
 import { useMediaQuery } from '@mui/material';
 
 export default function Search() {
@@ -18,6 +18,7 @@ export default function Search() {
 
     const [moviesList, setMoviesList] = useState<object[]>([]);
     const [tvShowsList, setTvShowsList] = useState<object[]>([]);
+    const [channelsList, setChannelsList] = useState<object[]>([]);
 
     useEffect(() => {
         fetch("https://bragi-be.vercel.app/movies/all")
@@ -31,11 +32,20 @@ export default function Search() {
         .then(tvShows => {
           setTvShowsList(tvShows.list);
         });
+
+
+        fetch("https://bragi-be.vercel.app/tv/all")
+        .then(response => response.json())
+        .then(channels => {
+            setChannelsList(channels.list);
+        });
     },[]);
 
     let moviesResults = dispMoviesResultsPerCat(searchText, moviesList, matches);
 
     let seriesResults = dispTvShowsResultsPerCat(searchText, tvShowsList, matches);
+
+    let channelsResults = dispChannelsResultsPerCat(searchText, channelsList, matches);
 
     
 
@@ -73,6 +83,11 @@ export default function Search() {
 
             <div className={styles.container}>
                 <h1>TV channels</h1>
+                {channelsResults.length===0?
+                <p style={{fontSize:25}}> ❌ No TV channels corresponding to the following search: "<span style={{fontWeight:'bolder'}}>{searchText}</span>" ❌</p>:
+                <div style={{display: 'flex', overflowX: 'scroll', height: '200px',}}>
+                    {channelsResults}
+                </div>}
             </div>
         </main>
 
