@@ -75,7 +75,7 @@ export default function Episode() {
         });
     });
 
-    },[router.query]);
+    },[router.query, link]);
     
 
     const [anchorElSeason, setAnchorElSeason] = React.useState<null | HTMLElement>(null);
