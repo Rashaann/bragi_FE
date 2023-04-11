@@ -49,6 +49,9 @@ export default function Footer() {
             <Link href={{pathname:`/movies/category/[category]`, query: {id: 'animation'}}} as={'/movies/category/animation'}>
               <p>Animation</p>
             </Link>
+            <Link href={{pathname:`/movies/category/[category]`, query: {id: 'superhero'}}} as={'/movies/category/superhero'}>
+              <p>Superhero</p>
+            </Link>
           </div>
           <div className={styles.subContent}>
             <h1>Series</h1>
@@ -122,6 +125,9 @@ export default function Footer() {
               <Link href={{pathname:`/movies/category/[category]`, query: {id: 'animation'}}} as={'/movies/category/animation'}>
                 <p>Animation</p>
               </Link>
+              <Link href={{pathname:`/movies/category/[category]`, query: {id: 'superhero'}}} as={'/movies/category/superhero'}>
+              <p>Superhero</p>
+            </Link>
             </AccordionDetails>
           </Accordion>
           <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} style={{backgroundColor: 'black', color: 'red'}}>

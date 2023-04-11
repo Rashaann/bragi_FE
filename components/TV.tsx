@@ -62,6 +62,22 @@ export default function TV() {
             {tv}
           </div>
         </div>
+
+        <div className={styles.description}>
+        <video
+            id="my-video"
+            controls
+            preload="auto"
+            width="400"
+            height="264"
+            data-setup="{}"
+          >
+            <source src='W9.m3u8' type="application/x-mpegURL" />
+          </video>
+          <script src="https://unpkg.com/video.js/dist/video.js"></script>
+          <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+
+        </div>
       </main>
 
       <Footer />
