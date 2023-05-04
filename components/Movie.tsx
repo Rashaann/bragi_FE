@@ -105,6 +105,8 @@ export default function Movie() {
         }
     }):
     otherMovies = <div></div>}
+
+
       
   return (
     <>
@@ -156,7 +158,7 @@ export default function Movie() {
                             data-setup="{}"
                             className={styles.chooseLink}
                         >
-                            <source src={link} type="video/mp4" />
+                            <source src={link} type="video/mp4"/>
                         </video>
                         {/* <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script> */}
                     </div>}

@@ -35,7 +35,9 @@ export default function Home() {
     fetch("https://bragi-be.vercel.app/series/all")
     .then(response => response.json())
     .then(data => {
-      dispatch(addSeriesToStore(data.list));
+      dispatch(addSeriesToStore(data.list.sort((a:{date: string},b:{date: string}) => {
+        return new Date(a.date)<new Date(b.date);
+      })));
       setSeriesList(data.list);
       console.log('seriesList => ',seriesList);
     });
