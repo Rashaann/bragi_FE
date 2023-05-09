@@ -53,6 +53,22 @@ export default function Categories() {
           </div>
         </div>}
       </Link>)
+    } else if(router.query.category === 'all'){
+      let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
+      return (
+      <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
+        {matches?
+        <div className={styles.container}>
+          <div className={styles.content}>
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>       
+          </div>
+        </div>:
+        <div className={styles.smContainer}>
+          <div className={styles.smContent}>
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.smBackgroundImg}></div>       
+          </div>
+        </div>}
+      </Link>)
     }
   });
 

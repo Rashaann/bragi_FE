@@ -31,6 +31,9 @@ export default function Footer() {
             <Link href={{pathname:`/movies/category/[category]`, query: {id: 'recent'}}} as={'/movies/category/recent'}>
               <p>Recently added</p>
             </Link>
+            <Link href={{pathname:`/movies/category/[category]`, query: {id: 'all'}}} as={'/movies/category/all'}>
+              <p>All</p>
+            </Link>
             <Link href={{pathname:`/movies/category/[category]`, query: {id: 'comedy'}}} as={'/movies/category/comedy'}>
               <p>Comedy</p>
             </Link>
@@ -60,6 +63,9 @@ export default function Footer() {
             <h1>Series</h1>
             <Link href={{pathname:`/series/category/[category]`, query: {id: 'recent'}}} as={'/series/category/recent'}>
               <p>Recently added</p>
+            </Link>
+            <Link href={{pathname:`/series/category/[category]`, query: {id: 'all'}}} as={'/series/category/all'}>
+              <p>All</p>
             </Link>
             <Link href={{pathname:`/series/category/[category]`, query: {id: 'comedy'}}} as={'/series/category/comedy'}>
               <p>Comedy</p>
@@ -111,6 +117,9 @@ export default function Footer() {
               <Link href={{pathname:`/movies/category/[category]`, query: {id: 'recent'}}} as={'/movies/category/recent'}>
                 <p>Recently added</p>
               </Link>
+              <Link href={{pathname:`/movies/category/[category]`, query: {id: 'all'}}} as={'/movies/category/all'}>
+                <p>All</p>
+              </Link>
               <Link href={{pathname:`/movies/category/[category]`, query: {id: 'comedy'}}} as={'/movies/category/comedy'}>
                 <p>Comedy</p>
               </Link>
@@ -148,6 +157,9 @@ export default function Footer() {
             <AccordionDetails>
               <Link href={{pathname:`/series/category/[category]`, query: {id: 'recent'}}} as={'/series/category/recent'}>
                 <p>Recently added</p>
+              </Link>
+              <Link href={{pathname:`/series/category/[category]`, query: {id: 'all'}}} as={'/series/category/all'}>
+                <p>All</p>
               </Link>
               <Link href={{pathname:`/series/category/[category]`, query: {id: 'comedy'}}} as={'/series/category/comedy'}>
                 <p>Comedy</p>
