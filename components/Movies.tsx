@@ -30,7 +30,7 @@ export default function Movies() {
     });
   },[]);
 
-  const categories = ['comedy', 'horror', 'drama', 'action', 'scifi', 'animation', 'superhero'];
+  const categories = ['all', 'comedy', 'horror', 'drama', 'crime', 'action', 'scifi', 'animation', 'superhero'];
 
   const dispMovies = categories.map((el, i) => {
     console.log(dispMoviesPerCat(el, articlesList, matches).length);

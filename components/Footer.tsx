@@ -49,6 +49,9 @@ export default function Footer() {
             <Link href={{pathname:`/movies/category/[category]`, query: {id: 'animation'}}} as={'/movies/category/animation'}>
               <p>Animation</p>
             </Link>
+            <Link href={{pathname:`/movies/category/[category]`, query: {id: 'crime'}}} as={'/movies/category/crime'}>
+              <p>Crime</p>
+            </Link>
             <Link href={{pathname:`/movies/category/[category]`, query: {id: 'superhero'}}} as={'/movies/category/superhero'}>
               <p>Superhero</p>
             </Link>
@@ -72,6 +75,9 @@ export default function Footer() {
             </Link>
             <Link href={{pathname:`/series/category/[category]`, query: {id: 'scifi'}}} as={'/series/category/scifi'}>
               <p>Scifi</p>
+            </Link>
+            <Link href={{pathname:`/series/category/[category]`, query: {id: 'crime'}}} as={'/series/category/crime'}>
+              <p>Crime</p>
             </Link>
             <Link href={{pathname:`/series/category/[category]`, query: {id: 'animation'}}} as={'/series/category/animation'}>
               <p>Animation</p>
@@ -125,9 +131,12 @@ export default function Footer() {
               <Link href={{pathname:`/movies/category/[category]`, query: {id: 'animation'}}} as={'/movies/category/animation'}>
                 <p>Animation</p>
               </Link>
+              <Link href={{pathname:`/movies/category/[category]`, query: {id: 'crime'}}} as={'/movies/category/crime'}>
+                <p>Crime</p>
+              </Link>
               <Link href={{pathname:`/movies/category/[category]`, query: {id: 'superhero'}}} as={'/movies/category/superhero'}>
-              <p>Superhero</p>
-            </Link>
+                <p>Superhero</p>
+              </Link>
             </AccordionDetails>
           </Accordion>
           <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')} style={{backgroundColor: 'black', color: 'red'}}>
@@ -156,6 +165,9 @@ export default function Footer() {
               </Link>
               <Link href={{pathname:`/series/category/[category]`, query: {id: 'scifi'}}} as={'/series/category/scifi'}>
                 <p>Scifi</p>
+              </Link>
+              <Link href={{pathname:`/series/category/[category]`, query: {id: 'crime'}}} as={'/series/category/crime'}>
+                <p>Crime</p>
               </Link>
               <Link href={{pathname:`/series/category/[category]`, query: {id: 'animation'}}} as={'/series/category/animation'}>
                 <p>Animation</p>
