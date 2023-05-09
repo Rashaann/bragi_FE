@@ -15,7 +15,7 @@ export default function DMCA() {
   return (
     <>
         <Head>
-            <title>Bragi | Free streaming website</title>
+            <title>Bragi | DIGITAL MILLENNIUM COPYRIGHT ACT (DMCA) NOTICE</title>
             <meta name="description" content="Free streaming website" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="https://res.cloudinary.com/dldeqai4u/image/upload/v1679305932/bragi/icon_izqe4d.png" />

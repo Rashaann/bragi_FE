@@ -91,9 +91,22 @@ export default function Footer() {
           </div>
           <div className={styles.subContent}>
             <h1>TV</h1>
+            <p>All</p>
             <p>Country</p>
             <p>Language</p>
             <p>Type</p>
+          </div>
+          <div className={styles.subContent}>
+            <h1>Help & Contact</h1>
+            <Link href={{pathname:`/notices`}}>
+              <p>How does it work?</p>
+            </Link>
+            <Link href={{pathname:`/dmca`}}>
+              <p>DMCA</p>
+            </Link>
+            <Link href={{pathname:`/contact`}}>
+              <p>Contact</p>
+            </Link>
           </div>
         </div>
         <div className={styles.signature}>
@@ -195,9 +208,32 @@ export default function Footer() {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
+              <p>All</p>
               <p>Country</p>
               <p>Language</p>
               <p>Type</p>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')} style={{backgroundColor: 'black', color: 'red'}}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon color='error' />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+            >
+              <Typography sx={{ width: '33%', flexShrink: 0, fontFamily: 'Barlow Condensed', fontSize: 25 }}>
+                Help & Contact
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Link href={{pathname:`/notices`}}>
+                <p>How does it work?</p>
+              </Link>
+              <Link href={{pathname:`/dmca`}}>
+                <p>DMCA</p>
+              </Link>
+              <Link href={{pathname:`/contact`}}>
+                <p>Contact</p>
+              </Link>
             </AccordionDetails>
           </Accordion>
         </div>
