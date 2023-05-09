@@ -85,16 +85,14 @@ export default function Footer() {
           </div>
           <div className={styles.subContent}>
             <h1>TV</h1>
-            <p>Maroc 2M</p>
-            <p>Al Aoula</p>
-            <p>Al Maghribia</p>
-            <p>MBC</p>
-            <p>MBC 4</p>
+            <p>Country</p>
+            <p>Language</p>
+            <p>Type</p>
           </div>
         </div>
         <div className={styles.signature}>
           <img src='https://res.cloudinary.com/dldeqai4u/image/upload/v1678994822/bragi/bragi_black_htjdmx.png' width={70} />
-          <p>Made with 💚 by Zak<span className={styles.hiddenName}>stein</span></p>
+          <p className={styles.hiddenName}>Made with love by Zakstein</p>
         </div>
       </div>:
       <div className={styles.smContainer}>
@@ -185,11 +183,9 @@ export default function Footer() {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <p>Maroc 2M</p>
-              <p>Al Aoula</p>
-              <p>Al Maghribia</p>
-              <p>MBC</p>
-              <p>MBC 4</p>
+              <p>Country</p>
+              <p>Language</p>
+              <p>Type</p>
             </AccordionDetails>
           </Accordion>
         </div>
@@ -197,7 +193,7 @@ export default function Footer() {
         
         <div className={styles.signature}>
           <img src='https://res.cloudinary.com/dldeqai4u/image/upload/v1678994822/bragi/bragi_black_htjdmx.png' width={70} />
-          <p>Made with 💚 by Zak<span className={styles.hiddenName}>stein</span></p>
+          <p className={styles.hiddenName}>Made with love by Zakstein</p>
         </div>
       </div>}
         
