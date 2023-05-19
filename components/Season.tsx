@@ -45,8 +45,8 @@ export default function Season() {
                 setEpisodes(Object.keys(el.links[0][`S${String(router.query.seasons)}`]).map((e, j) => {
                     //console.log('episode => ', String(Number(j) + 1))
                     let episode = 'episode ' + String(Number(j) + 1);
-                    let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
-                    return (<Link key={j} href={{pathname:'/[series]/[seasons]/[episodes]/episode', query: {id: el.id, url: url, season: router.query.season, episode: String(Number(j)+1), episodeUrl: j}}} as={`/${el.id}/${router.query.seasons}/${String(Number(j)+1)}/episode`} >
+                    //let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
+                    return (<Link key={j} href={{pathname:'/[series]/[seasons]/[episodes]/episode', query: {id: el.id, season: router.query.season, episode: String(Number(j)+1), episodeUrl: j}}} as={`/${el.id}/${router.query.seasons}/${String(Number(j)+1)}/episode`} >
                         {matches?
                         <div className={styles.episodeContainer}>
                             <div className={styles.episodeContent}>
