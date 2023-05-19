@@ -54,12 +54,12 @@ export default function Serie() {
                 let seasons = Object.keys(el.links[0]).filter(e => e[0] === 'S');
 
                 setSeasons(seasons.map((e, i) => {
-                    let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
+                    //let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
                     let season = 'season ' + String(Number(i)+1);
                     console.log(String(Number(i)+1));
                     // console.log('season => ', JSON.stringify(e[0])===JSON.stringify('S'));
                     if(JSON.stringify(e[0])===JSON.stringify('S')){
-                        return (<Link key={i} href={{pathname:'/[series]/[seasons]/season', query: {id: el.id, url: url, season: String(Number(i)+1), seasonUrl: `season${String(Number(i)+1)}`}}} as={`/${el.id}/${String(Number(i)+1)}/season`}>
+                        return (<Link key={i} href={{pathname:'/[series]/[seasons]/season', query: {id: el.id, season: String(Number(i)+1), seasonUrl: `season${String(Number(i)+1)}`}}} as={`/${el.id}/${String(Number(i)+1)}/season`}>
                             {matches?
                             <div className={styles.seasonContainer}>
                                 <div className={styles.seasonContent}>
