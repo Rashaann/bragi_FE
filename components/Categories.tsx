@@ -38,9 +38,9 @@ export default function Categories() {
 
 
   let articles:any[] = articlesList.map((el: any,i: number) => {
-    let title = '';
+    //let title = '';
     if(el.mediaType === "movie" && (router.query.category !== 'recent' && el.category === router.query.category)){
-      let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
+      //let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
         {matches?
@@ -56,7 +56,7 @@ export default function Categories() {
         </div>}
       </Link>)
     } else if(router.query.category === 'all'){
-      let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
+      //let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
         {matches?
