@@ -43,12 +43,12 @@ export default function Categories() {
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
-        {matches?
+        if(matches){
         <div className={styles.container}>
           <div className={styles.content}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>       
           </div>
-        </div>:
+        </div>}else{
         <div className={styles.smContainer}>
           <div className={styles.smContent}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.smBackgroundImg}></div>       
@@ -59,12 +59,12 @@ export default function Categories() {
       let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
-        {matches?
+        if(matches){
         <div className={styles.container}>
           <div className={styles.content}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>       
           </div>
-        </div>:
+        </div>}else{
         <div className={styles.smContainer}>
           <div className={styles.smContent}>
               <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.smBackgroundImg}></div>       
