@@ -162,11 +162,29 @@
 .inputs{
   width: 40vw;
   height: 5vh;
+  font-family: 'Barlow Condensed';
+  font-size: 20px;
 }
+
+.smInputs{
+  width: 90vw;
+  height: 5vh;
+  font-family: 'Barlow Condensed';
+  font-size: 20px;
+}
+
 
 .mail{
   display: flex;
   width: 40vw;
+  height: 30vh;
+  font-family: 'Barlow Condensed';
+  font-size: 20px;
+}
+
+.smMail{
+  display: flex;
+  width: 90vw;
   height: 30vh;
   font-family: 'Barlow Condensed';
   font-size: 20px;
@@ -192,5 +210,27 @@
 }
 
 .submitBtn:hover{
+  box-shadow: 5px -5px 5px rgb(43, 34, 33);
+}
+
+.smSubmitBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 10vh;
+
+  font-size: 20px;
+  font-family: 'Barlow Condensed';
+
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.smSubmitBtn:hover{
   box-shadow: 5px -5px 5px rgb(43, 34, 33);
 }

@@ -15,6 +15,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function Contact() {
 
+  const matches = useMediaQuery('(min-width:904px)');
+
   const [email, setEmail] = useState<string>('');
   const [object, setObject] = useState<string>('');
   const [request, setRequest] = useState<string>('');
@@ -70,9 +72,10 @@ export default function Contact() {
         <main className={styles.main}>
           <div>
             <p className={styles.subTitle}>An issue? A bug? A request?</p>
-            <p className={styles.subTitle}>Please fill this contact form to reach us!</p>
+            <p className={styles.subTitle}>Please fill this contact form to reach us! 💻</p>
           </div>
           
+          {matches?
           <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
             <label className={styles.label}>Your email address:
               <input className={styles.inputs} type="text" name='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email}/>
@@ -83,10 +86,20 @@ export default function Contact() {
             <label className={styles.label}>Mail:
               <textarea className={styles.mail} placeholder='Write down your request' name='request' onChange={(e) => setRequest(e.target.value)} value={request}></textarea>
             </label>
-            <button className={styles.submitBtn} type="submit">Submit</button>
-            
-
-          </form>
+            <button className={styles.submitBtn} type="submit">Submit</button>  
+          </form>:
+          <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+            <label className={styles.label}>Your email address:
+              <input className={styles.smInputs} type="text" name='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email}/>
+            </label>
+            <label className={styles.label}>Object:
+              <input className={styles.smInputs} type="text" name='object' placeholder='Object' onChange={(e) => setObject(e.target.value)} value={object}/>
+            </label>
+            <label className={styles.label}>Mail:
+              <textarea className={styles.smMail} placeholder='Write down your request' name='request' onChange={(e) => setRequest(e.target.value)} value={request}></textarea>
+            </label>
+            <button className={styles.smSubmitBtn} type="submit">Submit</button>  
+          </form>}
           
         </main>
 
