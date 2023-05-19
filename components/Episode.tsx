@@ -62,15 +62,17 @@ export default function Episode() {
                 setEpisodes(router.query.episodes);
                 
                 // console.log("selectedSeason => ", selectedSeason);
-                {el.links[0][`S${router.query.seasons}`][Number(router.query.episodes)-1].vf !== ''?
-                setAvailablePlayers(availablePlayers + 'vf'):
-                setAvailablePlayers(availablePlayers)}
-                {el.links[0][`S${router.query.seasons}`][Number(router.query.episodes)-1].vostfr !== ''?
-                setAvailablePlayers(availablePlayers + 'vostfr'):
-                setAvailablePlayers(availablePlayers)}
-                {el.links[0][`S${router.query.seasons}`][Number(router.query.episodes)-1].vo !== ''?
-                setAvailablePlayers(availablePlayers + 'vo'):
-                setAvailablePlayers(availablePlayers)}
+                const players = [];
+                if(el.links[0][`S${router.query.seasons}`][Number(router.query.episodes)-1].vf !== ''){
+                    players.push('vf');
+                }
+                if(el.links[0][`S${router.query.seasons}`][Number(router.query.episodes)-1].vostfr !== ''){
+                    players.push('vostfr');
+                }
+                if(el.links[0][`S${router.query.seasons}`][Number(router.query.episodes)-1].vo !== ''){
+                    players.push('vo');
+                }
+                setAvailablePlayers(players.join(', '));
             }
         });
     });
