@@ -29,7 +29,9 @@ export default function Categories() {
     fetch("https://bragi-be.vercel.app/movies/all")
     .then(response => response.json())
     .then(data => {
-      dispatch(addMoviesToStore(data.list));
+      dispatch(addMoviesToStore(data.list.sort((a:{date: string},b:{date: string}) => {
+        return new Date(a.date)<new Date(b.date);
+      })));
       setArticlesList(data.list);
     });
   },[])

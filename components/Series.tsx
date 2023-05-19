@@ -12,6 +12,7 @@ import Link from 'next/link';
 
 
 import useMediaQuery from '@mui/material/useMediaQuery';
+import dispSeriesPerCat from '@/modules/dispSeriesPerCat';
 
 export default function Series() {
   const matches = useMediaQuery('(min-width:904px)');
@@ -25,7 +26,9 @@ export default function Series() {
     fetch("https://bragi-be.vercel.app/series/all")
     .then(response => response.json())
     .then(data => {
-      dispatch(addSeriesToStore(data.list));
+      dispatch(addSeriesToStore(data.list.sort((a:{date: string},b:{date: string}) => {
+        return new Date(a.date)<new Date(b.date);
+      })));
       setArticlesList(data.list);
     });
   },[])
@@ -53,6 +56,45 @@ export default function Series() {
     }
   });
 
+  const categories = ['all', 'comedy', 'horror', 'drama', 'crime', 'action', 'scifi', 'animation', 'superhero'];
+
+  const dispSeries = categories.map((el, i) => {
+    console.log(dispSeriesPerCat(el, articlesList, matches).length);
+      if(matches){
+        return(
+          <div key={i} className={styles.movieContainer}>
+            <h1 className={styles.title}>{el[0].toUpperCase() + el.slice(1)} shows:</h1>
+            {dispSeriesPerCat(el, articlesList, matches).length !== 0?
+            <div style={{display: 'flex', overflowX: 'scroll', height: 850}}>
+              {dispSeriesPerCat(el, articlesList, matches)}
+              <div className={styles.btnContent}>
+                <Link href={{pathname:`/series/category/[category]`, query: {id: el}}} as={`/series/category/${el}`}>
+                  <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 200, height: 70, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more {el} shows</button>
+                </Link>
+              </div>
+            </div>:
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center',height:850, fontSize:30}}>❌ No series for this category...</div>}
+          </div>
+        )
+      } else {
+        return (
+          <div key={i} className={styles.movieContainer}>
+            <h1>{el[0].toUpperCase() + el.slice(1)} shows:</h1>
+            {dispSeriesPerCat(el, articlesList, matches).length !== 0?
+            <div style={{display: 'flex', overflowX: 'scroll', height: 450}}>
+              {dispSeriesPerCat(el, articlesList, matches)}
+              <div className={styles.smBtnContent}>
+                <Link href={{pathname:`/series/category/[category]`, query: {id: el}}} as={`/series/category/${el}`}>
+                  <button style={{display: 'flex', justifyContent:'center', alignItems:'center', width: 180, height: 60, backgroundColor: 'black', cursor: 'pointer', color: 'white', borderRadius: 10, fontSize: 16}}>See more {el} shows</button>
+                </Link>
+              </div>
+            </div>:
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center',height:450, fontSize:30}}>No series for this category</div>}
+          </div>)
+      }
+    
+  })
+
 
   return (
     <>
@@ -67,7 +109,7 @@ export default function Series() {
       
       <main className={styles.main}>
         <div className={styles.bodyCategory}>
-          {articles}
+          {dispSeries}
         </div>
       </main>
 
