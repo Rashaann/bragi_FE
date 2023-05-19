@@ -55,21 +55,21 @@ export default function Home() {
   
 
   let articles:any[] = articlesList.map((el: any, i: number) => {
-    let title = '';
+    //let title = '';
     if(el.mediaType === "movie" && i<=8){
       
-      let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
+      //let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
       <Link key={i} href={{pathname:`/movies/[movie]`, query: {id: el.id}}} as={`/movies/${el.id}`} passHref>
         {matches?
         <div key={i} className={styles.container}>
           <div className={styles.content}>
-              <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>       
           </div>
         </div>:
         <div key={i} className={styles.smContainer}>
           <div className={styles.smContent}>
-              <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.smBackgroundImg}></div>       
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.smBackgroundImg}></div>       
           </div>
         </div>}
       </Link>)
@@ -92,22 +92,22 @@ export default function Home() {
 
 
   let series:any[] = seriesList.map((el: any,i: number) => {
-    let title = '';
+    //let title = '';
     console.log
     if(el.mediaType === "serie" && i<=8){
 
-      let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
+      //let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
       return (
-      <Link key={i} href={{pathname:`/[series]/serie`, query: {id: el.id, url: url}}} as={`/${el.id}/serie`} passHref>
+      <Link key={i} href={{pathname:`/[series]/serie`, query: {id: el.id}}} as={`/${el.id}/serie`} passHref>
         {matches?
         <div key={i} className={styles.container}>
           <div className={styles.content}>
-              <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.backgroundImg}></div>       
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>       
           </div>
         </div>:
         <div key={i} className={styles.smContainer}>
           <div className={styles.smContent}>
-              <div style={{backgroundImage:"url(" + el.poster + ")"}} onMouseEnter={() => title=el.frenchTitle} onMouseLeave={() => title=''} className={styles.smBackgroundImg}></div>       
+              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.smBackgroundImg}></div>       
           </div>
         </div>}
       </Link>)
