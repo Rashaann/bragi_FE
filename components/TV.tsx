@@ -27,19 +27,21 @@ export default function TV() {
   const regex = /bradmax/i
 
   const displayTv = (source:string) => {
-    //{regex.test(source)?
-    setTv(<iframe src={source} style={{width: '80vw', height: '80vh'}} allow="autoplay; encrypted-media" allowFullScreen></iframe>)
-    // setTv(<video
-    //         id="my-video"
-    //         controls
-    //         preload="auto"
-    //         width="400"
-    //         height="264"
-    //         data-setup="{}"
-    //       >
-    //         <source src={source} type="application/x-mpegURL" />
-    //       </video>)
-    // }
+    {regex.test(source)?
+    setTv(<iframe src={source} style={{width: '80vw', height: '80vh'}} allow="autoplay; encrypted-media" allowFullScreen></iframe>):
+    setTv(<video
+      id="my-video"
+      //class="video-js"
+      controls
+      preload="auto"
+      width="640"
+      height="264"
+      poster="MY_VIDEO_POSTER.jpg"
+      data-setup="{}"
+    >
+      <source src={source} type="application/x-mpegURL" />
+    </video>)
+    }
   }
 
   const displayLogo = tvChannels.map((el:any, i:React.Key) => {
@@ -50,7 +52,7 @@ export default function TV() {
   </div>)
   })
 
-  
+  // arte -> "https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fartesimulcast.akamaized.net%2Fhls%2Flive%2F2031003%2Fartelive_fr%2Findex.m3u8&title=Tears%20of%20steel&duration=734.097415"
   return (
     <>
       <Head>
@@ -74,21 +76,7 @@ export default function TV() {
             {tv}
           </div>
         </div>
-
-        {/* <div className={styles.description}>
-        <video
-            id="my-video"
-            controls
-            preload="auto"
-            width="400"
-            height="264"
-            data-setup="{'liveui': true}"
-          >
-            <source src="https://filedn.eu/lYGn2UnA3LOHQ5b3d2PfgxL/tv/W9.m3u8"  />
-          </video>
-
-        </div> */}
-      </main>
+        </main>
 
       <Footer />
       

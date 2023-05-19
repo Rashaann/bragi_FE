@@ -31,32 +31,11 @@ export default function Series() {
       })));
       setArticlesList(data.list);
     });
-  },[])
+  },[]);
 
+  
 
-  let articles:any[] = articlesList.map((el: any,i: number) => {
-    let title = '';
-    if(el.mediaType === "serie"){
-
-      let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
-      return (
-      <Link key={i} href={{pathname:`/[series]/serie`, query: {id: el.id, url: url}}} as={`/${el.id}/serie`} passHref>
-        {matches?
-        <div className={styles.container}>
-          <div className={styles.content}>
-              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.backgroundImg}></div>       
-          </div>
-        </div>:
-        <div className={styles.smContainer}>
-          <div className={styles.smContent}>
-              <div style={{backgroundImage:"url(" + el.poster + ")"}} className={styles.smBackgroundImg}></div>       
-          </div>
-        </div>}
-      </Link>)
-    }
-  });
-
-  const categories = ['all', 'comedy', 'horror', 'drama', 'crime', 'action', 'scifi', 'animation', 'superhero'];
+  const categories = ['all', 'comedy', 'horror', 'drama', 'crime', 'action', 'scifi', 'animation'];
 
   const dispSeries = categories.map((el, i) => {
     console.log(dispSeriesPerCat(el, articlesList, matches).length);
