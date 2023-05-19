@@ -10,6 +10,7 @@ import storage from 'redux-persist/lib/storage';
 
 import bragi from '../reducers/bragi';
 
+
 const reducers = combineReducers({ bragi });
 
 const persistConfig = {key: 'bragi', storage}

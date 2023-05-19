@@ -135,3 +135,62 @@
   font-size: 20px;
   font-family: 'Barlow Condensed';
 }
+
+
+
+
+
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 90vw;
+  height: 90vh;
+
+  font-family: 'Barlow Condensed';
+}
+
+
+.label{
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+}
+
+.inputs{
+  width: 40vw;
+  height: 5vh;
+}
+
+.mail{
+  display: flex;
+  width: 40vw;
+  height: 30vh;
+  font-family: 'Barlow Condensed';
+  font-size: 20px;
+}
+
+
+.submitBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  height: 10vh;
+
+  font-size: 20px;
+  font-family: 'Barlow Condensed';
+
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.submitBtn:hover{
+  box-shadow: 5px -5px 5px rgb(43, 34, 33);
+}
