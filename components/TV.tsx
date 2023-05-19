@@ -6,6 +6,7 @@ import Footer from './Footer';
 
 export default function TV() {
   const [tvChannels, setTvChannels] = useState<object[]>([]);
+  const [tv, setTv] = useState<any>(<iframe src="https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fcdnamd-hls-globecast.akamaized.net%2Flive%2Framdisk%2F2m_monde%2Fhls_video_ts_tuhawxpiemz257adfc%2F2m_monde.m3u8&duration=734.097415" style={{width: '80vw', height: '80vh'}} allow="autoplay; encrypted-media" allowFullScreen></iframe>);
 
   useEffect(() => {
     fetch('https://bragi-be.vercel.app/tv/all')
@@ -18,16 +19,27 @@ export default function TV() {
         console.log('AN ERROR OCCURED DURING THE FETCH.')
       }
     })
-  },[]);
+  },[tv]);
   
 
 
-  const [tv, setTv] = useState<any>(<iframe src="https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fcdnamd-hls-globecast.akamaized.net%2Flive%2Framdisk%2F2m_monde%2Fhls_video_ts_tuhawxpiemz257adfc%2F2m_monde.m3u8&duration=734.097415" style={{width: '80vw', height: '80vh'}} allow="autoplay; encrypted-media" allowFullScreen></iframe>);
-
+  
+  const regex = /bradmax/i
 
   const displayTv = (source:string) => {
-    setTv(
-      <iframe src={source} style={{width: '80vw', height: '80vh'}} allow="autoplay; encrypted-media" allowFullScreen></iframe>)
+    //{regex.test(source)?
+    setTv(<iframe src={source} style={{width: '80vw', height: '80vh'}} allow="autoplay; encrypted-media" allowFullScreen></iframe>)
+    // setTv(<video
+    //         id="my-video"
+    //         controls
+    //         preload="auto"
+    //         width="400"
+    //         height="264"
+    //         data-setup="{}"
+    //       >
+    //         <source src={source} type="application/x-mpegURL" />
+    //       </video>)
+    // }
   }
 
   const displayLogo = tvChannels.map((el:any, i:React.Key) => {
@@ -70,12 +82,10 @@ export default function TV() {
             preload="auto"
             width="400"
             height="264"
-            data-setup="{}"
+            data-setup="{'liveui': true}"
           >
-            <source src='W9.m3u8' type="application/x-mpegURL" />
+            <source src="https://filedn.eu/lYGn2UnA3LOHQ5b3d2PfgxL/tv/W9.m3u8"  />
           </video>
-          <script src="https://unpkg.com/video.js/dist/video.js"></script>
-          <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
 
         </div> */}
       </main>

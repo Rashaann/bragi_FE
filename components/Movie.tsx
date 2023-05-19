@@ -51,17 +51,22 @@ export default function Movie() {
                 setMovieCategory(el.category);
                 setIsDataLoaded(true);
                 // console.log(el.link.vostfr);
-                console.log(JSON.stringify(el.link.vf) !== JSON.stringify([]));
-                console.log(JSON.stringify(el.link.vostfr) !== JSON.stringify([]));
-                console.log(JSON.stringify(el.link.vo) !== JSON.stringify([]));
+                // console.log(JSON.stringify(el.link.vf) !== JSON.stringify([]));
+                // console.log(JSON.stringify(el.link.vostfr) !== JSON.stringify([]));
+                // console.log(JSON.stringify(el.link.vo) !== JSON.stringify([]));
 
-                {JSON.stringify(el.link.vf) !== JSON.stringify([])?
-                setAvailablePlayers('vf'):
-                JSON.stringify(el.link.vostfr) !== JSON.stringify([])?
-                setAvailablePlayers('vostfr'):
-                JSON.stringify(el.link.vo) !== JSON.stringify([])?
-                setAvailablePlayers('vo'):
-                setAvailablePlayers('')}
+                const players = []
+                if(JSON.stringify(el.link.vf) !== JSON.stringify([])){
+                    players.push('vf');
+                }
+                if(JSON.stringify(el.link.vostfr) !== JSON.stringify([])){
+                    players.push('vostfr');
+                }
+                if(JSON.stringify(el.link.vo) !== JSON.stringify([])){
+                    players.push('vo');
+                }
+
+                setAvailablePlayers(players.join(', '));
             }
         })
         })
