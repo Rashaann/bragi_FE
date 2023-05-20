@@ -28,7 +28,7 @@ export default function DMCA() {
         </Head>
 
 
-        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} isConnectionModal={isConnectionModal} />}
         <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
 
         <main className={styles.main}>

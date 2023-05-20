@@ -84,7 +84,7 @@ export default function Movies() {
         <link rel="icon" href="https://res.cloudinary.com/dldeqai4u/image/upload/v1679305932/bragi/icon_izqe4d.png" />
       </Head>
 
-      {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+      {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} isConnectionModal={isConnectionModal} />}
       <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
       
       <main className={styles.main}>

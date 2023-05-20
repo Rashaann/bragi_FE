@@ -70,7 +70,7 @@ export default function Contact() {
         </Head>
 
 
-        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} isConnectionModal={isConnectionModal} />}
         <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
         
 

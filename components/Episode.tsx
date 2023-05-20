@@ -20,6 +20,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 
 import useMediaQuery from '@mui/material/useMediaQuery';
+import ModalConnection from './ModalConnection';
 
 
 export default function Episode() {
@@ -46,9 +47,14 @@ export default function Episode() {
     const [availablePlayers, setAvailablePlayers] = useState<string>('');
 
     const [isConnectionModal, setIsConnectionModal] = useState<boolean>(false);
+
+    const user = useSelector((state: any)=> state.bragi.value.user);
     
 
     useEffect(() => {
+        if(JSON.stringify(user) === '{}'){
+            setIsConnectionModal(true);
+        }
         
         fetch("https://bragi-be.vercel.app/series/all")
         .then(response => response.json())
@@ -159,7 +165,7 @@ export default function Episode() {
             <link rel="icon" href="https://res.cloudinary.com/dldeqai4u/image/upload/v1679305932/bragi/icon_izqe4d.png" />
         </Head>
 
-        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} isConnectionModal={isConnectionModal} />}
         <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
 
         {isLoaded?

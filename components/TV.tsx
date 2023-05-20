@@ -4,6 +4,7 @@ import styles from '@/styles/TV.module.css';
 import Header from './Header';
 import Footer from './Footer';
 import ModalConnection from './ModalConnection';
+import { useSelector } from 'react-redux';
 
 export default function TV() {
 
@@ -12,7 +13,11 @@ export default function TV() {
   const [tvChannels, setTvChannels] = useState<object[]>([]);
   const [tv, setTv] = useState<any>(<iframe src="https://bradmax.com/client/embed-player/8c177fc01428643cb4513fd31fedc4183e14bdd1_13452?mediaUrl=https%3A%2F%2Fcdnamd-hls-globecast.akamaized.net%2Flive%2Framdisk%2F2m_monde%2Fhls_video_ts_tuhawxpiemz257adfc%2F2m_monde.m3u8&duration=734.097415" style={{width: '80vw', height: '80vh'}} allow="autoplay; encrypted-media" allowFullScreen></iframe>);
 
+  const user = useSelector((state: any) => state.bragi.value.user);
   useEffect(() => {
+    if(JSON.stringify(user) === '{}'){
+      setIsConnectionModal(true);
+    }
     fetch('https://bragi-be.vercel.app/tv/all')
     .then(response => response.json())
     .then(data => {
@@ -68,7 +73,7 @@ export default function TV() {
         <script src="https://vjs.zencdn.net/8.0.4/video.min.js" defer></script>
       </Head>
 
-      {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+      {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} isConnectionModal={isConnectionModal} />}
       <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
       
       <main className={styles.main}>

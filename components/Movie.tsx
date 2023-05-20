@@ -13,6 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import Link from 'next/link';
 import ModalConnection from './ModalConnection';
+import { useSelector } from 'react-redux';
 
 
 export default function Movie() {
@@ -42,8 +43,13 @@ export default function Movie() {
 
     const [isConnectionModal, setIsConnectionModal] = useState<boolean>(false);
 
-
+    const user = useSelector((state: any)=> state.bragi.value.user);
+    
     useEffect(() => {
+        if(JSON.stringify(user) === '{}'){
+            setIsConnectionModal(true);
+        }
+
         fetch("https://bragi-be.vercel.app/movies/all")
         .then(response => response.json())
         .then(data => {
@@ -127,7 +133,7 @@ export default function Movie() {
             <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
         </Head>
 
-        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} isConnectionModal={isConnectionModal} />}
         <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
 
         {isDataLoaded?

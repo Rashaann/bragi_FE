@@ -62,7 +62,7 @@ export default function Search() {
             <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
         </Head>
 
-        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} isConnectionModal={isConnectionModal} />}
         <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
 
         <main className={styles.main}>

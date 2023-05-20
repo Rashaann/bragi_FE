@@ -13,6 +13,7 @@ import Link from 'next/link';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ModalConnection from './ModalConnection';
+import { useSelector } from 'react-redux';
 
 export default function Serie() {
     const router = useRouter();
@@ -31,8 +32,12 @@ export default function Serie() {
     const [seasons, setSeasons] = useState<any>();
     const [episodes, setEpisodes] = useState<any>();
     
+    const user = useSelector((state: any)=> state.bragi.value.user);
 
     useEffect(() => {
+        if(JSON.stringify(user) === '{}'){
+            setIsConnectionModal(true);
+        }
         fetch("https://bragi-be.vercel.app/series/all")
         .then(response => response.json())
         .then(data => {
@@ -93,7 +98,7 @@ export default function Serie() {
             <link rel="icon" href="https://res.cloudinary.com/dldeqai4u/image/upload/v1679305932/bragi/icon_izqe4d.png" />
         </Head>
 
-        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} isConnectionModal={isConnectionModal} />}
         <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
 
             {isLoaded?

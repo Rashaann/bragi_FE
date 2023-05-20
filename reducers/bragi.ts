@@ -29,8 +29,11 @@ export const bragiSlice = createSlice({
         searchText: (state, action) => {
             state.value.search = action.payload;
         },
+        logout: (state) => {
+            state.value.user = {};
+        }
     }
 });
 
-export const { addUserToStore, addMoviesToStore, addSeriesToStore, addChannelsToStore, searchText } = bragiSlice.actions;
+export const { addUserToStore, addMoviesToStore, addSeriesToStore, addChannelsToStore, searchText, logout } = bragiSlice.actions;
 export default bragiSlice.reducer;
