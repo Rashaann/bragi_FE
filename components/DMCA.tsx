@@ -10,8 +10,13 @@ import { useDispatch } from 'react-redux';
 import { addMoviesToStore, addSeriesToStore, addChannelsToStore } from '@/reducers/bragi';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
+import ModalConnection from './ModalConnection';
 
 export default function DMCA() {
+
+    const [isConnectionModal, setIsConnectionModal] = useState<boolean>(false);
+
+
   return (
     <>
         <Head>
@@ -23,7 +28,8 @@ export default function DMCA() {
         </Head>
 
 
-        <Header />
+        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+        <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
 
         <main className={styles.main}>
             <h1 className={styles.title}>Informations DMCA</h1>

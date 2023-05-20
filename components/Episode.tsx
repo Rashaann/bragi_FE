@@ -44,6 +44,8 @@ export default function Episode() {
     const [displayEpisodes, setDisplayEpisodes] = useState<any>(null);
 
     const [availablePlayers, setAvailablePlayers] = useState<string>('');
+
+    const [isConnectionModal, setIsConnectionModal] = useState<boolean>(false);
     
 
     useEffect(() => {
@@ -157,7 +159,8 @@ export default function Episode() {
             <link rel="icon" href="https://res.cloudinary.com/dldeqai4u/image/upload/v1679305932/bragi/icon_izqe4d.png" />
         </Head>
 
-        <Header />
+        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+        <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
 
         {isLoaded?
         <main className={styles.main}>

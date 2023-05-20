@@ -9,9 +9,12 @@ import Header from './Header';
 import Footer from './Footer';
 import { dispChannelsResultsPerCat, dispMoviesResultsPerCat, dispTvShowsResultsPerCat } from '@/modules/dispResultsPerCat';
 import { useMediaQuery } from '@mui/material';
+import ModalConnection from './ModalConnection';
 
 export default function Search() {
     const matches = useMediaQuery('(min-width:904px)');
+
+    const [isConnectionModal, setIsConnectionModal] = useState<boolean>(false);
     
     
     const searchText = useSelector((state: RootState) => state.bragi.value.search);
@@ -59,7 +62,8 @@ export default function Search() {
             <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
         </Head>
 
-        <Header />
+        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+        <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
 
         <main className={styles.main}>
             <div className={styles.title}>Results for: {searchText}</div>

@@ -12,6 +12,7 @@ import styles from '../styles/Movie.module.css';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import Link from 'next/link';
+import ModalConnection from './ModalConnection';
 
 
 export default function Movie() {
@@ -38,6 +39,8 @@ export default function Movie() {
     const [movieCategory, setMovieCategory] = useState<string>('');
 
     const [availablePlayers, setAvailablePlayers] = useState<string>('');
+
+    const [isConnectionModal, setIsConnectionModal] = useState<boolean>(false);
 
 
     useEffect(() => {
@@ -124,7 +127,8 @@ export default function Movie() {
             <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
         </Head>
 
-        <Header />
+        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+        <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
 
         {isDataLoaded?
         <main className={styles.main}>

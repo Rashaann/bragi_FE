@@ -16,6 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MovieIcon from '@mui/icons-material/Movie';
 import SlideshowIcon from '@mui/icons-material/Slideshow';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
+import PersonIcon from '@mui/icons-material/Person';
 
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -23,12 +24,14 @@ import Router from 'next/router';
 import { useDispatch } from 'react-redux';
 import { searchText } from '@/reducers/bragi';
 
-export default function Header() {
+export default function Header(props: any) {
   const matches = useMediaQuery('(min-width:904px)');
 
   const dispatch = useDispatch();
 
   const [search, setSearch] = useState<string>('');
+
+  //const [isConnectionModal, setIsConnectionModal] = useState<boolean>(false);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -65,6 +68,7 @@ export default function Header() {
               onChange={(e) => setSearch(e.target.value)}
               value={search}
               onKeyDown={(e) => handleKeyPress(e)}/>
+            <PersonIcon style={{cursor: 'pointer'}} onClick={() => props.setIsConnectionModal(!props.isConnectionModal)}/>
         </div>:
         <div className={styles.smContainer}>
           <Tooltip title="Menu">

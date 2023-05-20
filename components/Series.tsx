@@ -13,9 +13,12 @@ import Link from 'next/link';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import dispSeriesPerCat from '@/modules/dispSeriesPerCat';
+import ModalConnection from './ModalConnection';
 
 export default function Series() {
   const matches = useMediaQuery('(min-width:904px)');
+
+  const [isConnectionModal, setIsConnectionModal] = useState<boolean>(false);
   
   const [articlesList, setArticlesList]=useState<any>([]);
   const [showTitle, setShowTitle] = useState<boolean>(false);
@@ -33,7 +36,7 @@ export default function Series() {
     });
   },[]);
 
-  
+
 
   const categories = ['all', 'comedy', 'horror', 'drama', 'crime', 'action', 'scifi', 'animation'];
 
@@ -84,7 +87,8 @@ export default function Series() {
         <link rel="icon" href="https://res.cloudinary.com/dldeqai4u/image/upload/v1679305932/bragi/icon_izqe4d.png" />
       </Head>
 
-      <Header />
+      {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+      <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
       
       <main className={styles.main}>
         <div className={styles.bodyCategory}>

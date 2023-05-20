@@ -12,10 +12,13 @@ import emailjs from 'emailjs-com';
 import Swal from 'sweetalert2';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
+import ModalConnection from './ModalConnection';
 
 export default function Contact() {
 
   const matches = useMediaQuery('(min-width:904px)');
+
+  const [isConnectionModal, setIsConnectionModal] = useState<boolean>(false);
 
   const [email, setEmail] = useState<string>('');
   const [object, setObject] = useState<string>('');
@@ -67,7 +70,9 @@ export default function Contact() {
         </Head>
 
 
-        <Header />
+        {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+        <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
+        
 
         <main className={styles.main}>
           <div>

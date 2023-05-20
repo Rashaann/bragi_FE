@@ -13,6 +13,7 @@ import { addMoviesToStore } from '@/reducers/bragi';
 import Link from 'next/link';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
+import ModalConnection from './ModalConnection';
 
 
 export default function Categories() {
@@ -22,6 +23,8 @@ export default function Categories() {
 
   const [articlesList, setArticlesList]=useState<any>([]);
   const [showTitle, setShowTitle] = useState<boolean>(false);
+
+  const [isConnectionModal, setIsConnectionModal] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
@@ -84,7 +87,8 @@ export default function Categories() {
         <link rel="icon" href="https://res.cloudinary.com/dldeqai4u/image/upload/v1679305932/bragi/icon_izqe4d.png" />
       </Head>
 
-      <Header />
+      {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+      <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
       
       <main className={styles.main}>
         <p className={styles.title}>Movies for category: {router.query.category}</p>

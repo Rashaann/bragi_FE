@@ -1,0 +1,204 @@
+@media only screen and (min-width: 600px){
+    /*Computers & Tablets [601px -> 1200px]*/
+    .modalContainer{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        position:fixed;
+        z-index: 1;
+        width:100vw;
+        height:100vh;
+    }
+    
+    .modalSubContainer{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        flex-direction:column;
+        background-color:black;
+        width:500px;
+        height:500px;
+        border-radius:10px;
+    }
+    
+    .closePage{
+        display:flex;
+        justify-content:flex-end;
+        align-items:center;
+        width:500px;
+        height:30px;
+        padding-right:15px;
+        padding-top:15px;
+        color:white;
+        cursor:pointer;
+    }
+    
+    .logo{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:500px;
+        height:125px;
+    }
+    
+    
+    .container{
+        display:flex;
+        flex-direction:column;
+        justify-content:space-around;
+        align-items:center;
+        height:250px;
+        width:500px;
+    }
+    
+    .text{
+        font-family:'Barlow Condensed';
+        color:white;
+        font-size:20px;
+    }
+    
+    .input{
+        border-width:0px;
+        width:400px;
+        height:40px;
+        border-radius:5px;
+        font-size:15px;
+        padding:10px;
+        font-family:'Barlow Condensed';
+    }
+    
+    
+    
+    .btnContainer{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:500px;
+        height:125px;
+    }
+    
+    .btn{
+        color:white;
+        background-color:black;
+        border-width:1.5px;
+        border-color:white;
+        border-radius:20px;
+        font-size:20px;
+        font-family:'Barlow Condensed';
+        width:150px;
+        height:35px;
+        cursor:pointer;
+    }
+    
+    
+    
+    .footer{
+        width:210px;
+        display:flex;
+        justify-content: space-around;
+    }
+}
+@media only screen and (max-width: 600px){
+	/*Big & Small smartphones [426px -> 600px]*/
+
+    .modalContainer{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        position:fixed;
+        z-index: 1;
+        width:100vw;
+        height:100vh;
+    }
+    
+    .modalSubContainer{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        flex-direction:column;
+        background-color:black;
+        width:85vw;
+        height:70vh;
+        border-radius:10px;
+    }
+    
+    .closePage{
+        display:flex;
+        justify-content:flex-end;
+        align-items:center;
+        width:85vw;
+        height:30px;
+        padding-right:15px;
+        padding-top:15px;
+        color:white;
+        cursor:pointer;
+    }
+    
+    .logo{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:85vw;
+        height:125px;
+    }
+    
+    
+    .container{
+        display:flex;
+        flex-direction:column;
+        justify-content:space-around;
+        align-items:center;
+        height:250px;
+        width:85vw;
+    }
+    
+    .text{
+        font-family:'Barlow Condensed';
+        color:white;
+        font-size:20px;
+    }
+    
+    .input{
+        border-width:0px;
+        width:70vw;
+        height:40px;
+        border-radius:5px;
+        font-size:15px;
+        padding:10px;
+        font-family:'Barlow Condensed';
+    }
+    
+    
+    
+    .btnContainer{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:85vw;
+        height:125px;
+    }
+    
+    .btn{
+        color:white;
+        background-color:black;
+        border-width:1.5px;
+        border-color:white;
+        border-radius:20px;
+        font-size:20px;
+        font-family:'Barlow Condensed';
+        width:150px;
+        height:35px;
+        cursor:pointer;
+    }
+    
+    
+    
+    .footer{
+        width:210px;
+        display:flex;
+        justify-content: space-around;
+    }
+}
+
+
+

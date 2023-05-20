@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { addMoviesToStore, addSeriesToStore, addChannelsToStore } from '@/reducers/bragi';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
+import ModalConnection from './ModalConnection';
 
 
 export default function Home() {
@@ -16,6 +17,8 @@ export default function Home() {
   const [seriesList, setSeriesList] = useState<object[]>([]);
   const [tvChannels, setTvChannels] = useState<object[]>([]);
   const [showTitle, setShowTitle] = useState<boolean>(false);
+
+  const [isConnectionModal, setIsConnectionModal] = useState<boolean>(false);
 
   const matches = useMediaQuery('(min-width:904px)');
 
@@ -93,7 +96,7 @@ export default function Home() {
 
   let series:any[] = seriesList.map((el: any,i: number) => {
     //let title = '';
-    console.log
+    //console.log
     if(el.mediaType === "serie" && i<=8){
 
       //let url = el.frenchTitle.replaceAll(' ','-').replaceAll(':','').toLowerCase() + '-' + el.id;
@@ -153,7 +156,8 @@ export default function Home() {
         <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
       </Head>
 
-        <Header />
+      {isConnectionModal && <ModalConnection setIsConnectionModal={setIsConnectionModal} />}
+      <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
       <main className={styles.main}>
         <div className={styles.movieContainer}>
           <h1>New movies</h1>
