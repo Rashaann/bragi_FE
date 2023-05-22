@@ -121,6 +121,13 @@ export default function Movie() {
     otherMovies = <div></div>}
 
 
+    const handleChangePlayer = (newPlayer: string) => {
+        console.log(JSON.stringify(link) === '[]');
+        setLink('');
+        console.log(link);
+        setLink(newPlayer);
+    }
+
       
   return (
     <>
@@ -156,11 +163,11 @@ export default function Movie() {
                 
                 <div className={styles.stream}>
                     <div className={styles.icons}>
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vf)} />
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vostfr)} />
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/english_flag_mlp7wy.png" className={styles.languageIcon} onClick={() => setLink(articlesList.link.vo)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.languageIcon} onClick={() => handleChangePlayer(articlesList.link.vf)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.languageIcon} onClick={() => handleChangePlayer(articlesList.link.vostfr)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/english_flag_mlp7wy.png" className={styles.languageIcon} onClick={() => handleChangePlayer(articlesList.link.vo)} />
                     </div>
-                    {(link==='')||(link===undefined)?
+                    {(JSON.stringify(link)==='[]')||(link===undefined)?
                     <div className={styles.chooseLink}>Please choose the version to display</div>:
                     <div className={styles.backStream}>
                         {/* <iframe id='test' src={vf} style={{borderWidth: 0}} className={styles.test} width={800} height={450} allowFullScreen ></iframe> */}
@@ -202,11 +209,11 @@ export default function Movie() {
                 
                 <div className={styles.smStream}>
                     <div className={styles.smIcons}>
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.smLanguageIcon} onClick={() => setLink(articlesList.link.vf)} />
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.smLanguageIcon} onClick={() => setLink(articlesList.link.vostfr)} />
-                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/english_flag_mlp7wy.png" className={styles.smLanguageIcon} onClick={() => setLink(articlesList.link.vo)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/french_flag_xzuxke.png" className={styles.smLanguageIcon} onClick={() => handleChangePlayer(articlesList.link.vf)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/vostfr_tzzr4h.jpg" className={styles.smLanguageIcon} onClick={() => handleChangePlayer(articlesList.link.vostfr)} />
+                        <img src="https://res.cloudinary.com/dldeqai4u/image/upload/v1679006146/bragi/english_flag_mlp7wy.png" className={styles.smLanguageIcon} onClick={() => handleChangePlayer(articlesList.link.vo)} />
                     </div>
-                    {(link==='')||(link===undefined)?
+                    {(JSON.stringify(link)==='[]')||(link===undefined)?
                     <div className={styles.smChooseLink}>Please choose the version to display</div>:
                     <div className={styles.smBackStream}>
                         {/* <iframe id='test' src={link} style={{borderWidth: 0, width: '80vw', height: '50vh'}} className={styles.test} allowFullScreen></iframe> */}
