@@ -171,6 +171,8 @@ export default function Movie() {
                             width="640"
                             height="264"
                             data-setup="{}"
+                            onPlay={() => console.log('PLAYED!')}
+                            onEnded={() => console.log('VIDEO FINISHED!')}
                             className={styles.chooseLink}
                         >
                             <source src={link} type="video/mp4"/>
