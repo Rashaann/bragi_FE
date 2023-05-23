@@ -89,7 +89,7 @@ export default function SignUp() {
             </form>:
             <form className={styles.form} action="/payment/monthly" method="POST" onSubmit={(e) => handleSignUp(e)}>
                 <label className={styles.label}>Firstname:
-                    <input className={styles.inputs} type="text" placeholder='Firstname' onChange={(e) => setFirstname(e.target.value)} value={firstname}/>
+                    <input className={styles.smInputs} type="text" placeholder='Firstname' onChange={(e) => setFirstname(e.target.value)} value={firstname}/>
                 </label>
                 <label className={styles.label}>Lastname:
                     <input className={styles.smInputs} type="text" placeholder='Lastname' onChange={(e) => setLastname(e.target.value)} value={lastname}/>
@@ -106,7 +106,7 @@ export default function SignUp() {
             </form>}
             <h1 className={styles.title}>2. Choose one of the plans:</h1>
 
-            <button className={styles.submitBtn} type="submit">Sign up</button>
+            <button className={matches?styles.submitBtn:styles.smSubmitBtn} type="submit">Sign up</button>
 
             
         </main>
