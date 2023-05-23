@@ -14,13 +14,9 @@ import ModalConnection from './ModalConnection';
 import { loadStripe } from '@stripe/stripe-js';
 
 
-const stripePromise = loadStripe(
-    process.env.REACT_APP_NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
-
 
 export default function SignUp() {
-    console.log('process.env.REACT_APP_NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY => ',process.env.REACT_APP_NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+    //console.log('process.env.REACT_APP_NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY => ',process.env.REACT_APP_NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
   const [isConnectionModal, setIsConnectionModal] = useState<boolean>(false);
 
@@ -69,6 +65,9 @@ export default function SignUp() {
         <Header isConnectionModal={isConnectionModal} setIsConnectionModal={setIsConnectionModal} />
 
         <main className={styles.main}>
+            <p className={styles.text}>This page was just designed to demonstrate my ability to develop a signup page.</p>
+            <p className={styles.text}>Having for purpose to show my technical level in React JS and knowing that the spread of that kind of content would be in violation of different copyright
+            laws, nobody can sign up in order to access the movies and tv shows displayed in BRAGI.</p>
             <h1 className={styles.title}>1. Fill in the form:</h1>
             {matches?
             <form className={styles.form} action="/payment/monthly" method="POST" onSubmit={(e) => handleSignUp(e)}>
@@ -87,14 +86,6 @@ export default function SignUp() {
                 <label className={styles.label}>Confirm your password:
                     <input className={styles.inputs} type="password" placeholder='Confirmation of password' onChange={(e) => setConfPassword(e.target.value)} value={confPassword} />
                 </label>
-                <button className={styles.submitBtn} type="submit">Sign up</button>
-                <button
-                    className={styles.payBtn}
-                    type="submit"
-                    role="link"
-                >
-                    Payer
-                </button> 
             </form>:
             <form className={styles.form} action="/payment/monthly" method="POST" onSubmit={(e) => handleSignUp(e)}>
                 <label className={styles.label}>Firstname:
@@ -112,20 +103,10 @@ export default function SignUp() {
                 <label className={styles.label}>Confirm your password:
                     <input className={styles.smInputs} type="password" placeholder='Confirmation of password' onChange={(e) => setConfPassword(e.target.value)} value={confPassword} />
                 </label>
-                <button className={styles.smSubmitBtn} type="submit">Submit</button>
-                <button
-                    className={styles.payBtn}
-                    type="submit"
-                    role="link"
-                >
-                    Payer
-                </button>
             </form>}
             <h1 className={styles.title}>2. Choose one of the plans:</h1>
 
-            <form>
-                
-            </form>
+            <button className={styles.submitBtn} type="submit">Sign up</button>
 
             
         </main>

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start:staging": "env-cmd -f .env.staging react-scripts start"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -31,6 +32,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
+    "react-scripts": "^5.0.1",
     "redux-persist": "^6.0.0",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4",
